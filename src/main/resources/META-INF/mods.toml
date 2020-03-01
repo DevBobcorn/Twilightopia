@@ -1,0 +1,27 @@
+modLoader="javafml" #mandatory
+loaderVersion="[28,)" #mandatory (28 is current forge version)
+credits='''
+Main Developer and Artist: DevBobcorn
+(AKA Bobcorn Octopus)
+Contact:	DevBobcorn@Outlook.com
+
+Special Thanks to Cadiboo for his coding
+inspiration and open-source projects which
+have solved me a lot of technical problems,
+and I really appreciate JoseTheCrafter for
+his textures in Food Plus Mod, they're surely
+making the mod much prettier and better. 
+'''
+[[mods]] #mandatory
+modId="twilightopia" #mandatory
+version="2.0.2" #mandatory
+logoFile="TwilightopiaBanner.png"
+displayName="Twilightopia: Phantasy" #mandatory
+description='''
+Twenty years from now you will be more
+disappointed by the things that you didn't
+do than by the ones you did do. So throw
+off the bowlines. Sail away from the safe
+harbor, catch the trade winds in your sails,
+Explore, Dream, Discover.
+'''

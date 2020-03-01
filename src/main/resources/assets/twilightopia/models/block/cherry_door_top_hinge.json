@@ -1,0 +1,8 @@
+{
+    "parent": "twilightopia:block/door_top_rh",
+    "textures": {
+        "bottom": "twilightopia:block/cherry_door_bottom",
+        "top": "twilightopia:block/cherry_door_top",
+        "side": "twilightopia:block/cherry_planks"
+    }
+}

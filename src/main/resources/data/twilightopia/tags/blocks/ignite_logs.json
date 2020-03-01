@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "twilightopia:ignite_log",
+    "twilightopia:ignite_wood",
+    "twilightopia:stripped_ignite_log",
+    "twilightopia:stripped_ignite_wood"
+  ]
+}

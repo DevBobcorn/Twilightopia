@@ -1,0 +1,22 @@
+{
+    "textures": {
+        "particle": "twilightopia:block/chocolate_cake_side",
+        "bottom": "block/cake_bottom",
+        "top": "twilightopia:block/chocolate_cake_top",
+        "side": "twilightopia:block/chocolate_cake_side",
+		"inside": "twilightopia:block/chocolate_cake_inner"
+    },
+    "elements": [
+        {   "from": [ 9, 0, 1 ],
+            "to": [ 15, 8, 15 ],
+            "faces": {
+                "down":  { "texture": "#bottom", "cullface": "down" },
+                "up":    { "texture": "#top" },
+                "north": { "texture": "#side" },
+                "south": { "texture": "#side" },
+                "west":  { "texture": "#inside" },
+                "east":  { "texture": "#side" }
+            }
+        }
+    ]
+}

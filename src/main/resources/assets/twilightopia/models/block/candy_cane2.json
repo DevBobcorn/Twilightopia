@@ -1,0 +1,6 @@
+{
+    "parent": "block/crop",
+    "textures": {
+        "crop": "twilightopia:block/cane_2"
+    }
+}

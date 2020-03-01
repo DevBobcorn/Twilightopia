@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "twilightopia:block/cherry_log",
+        "side": "twilightopia:block/cherry_log"
+    }
+}

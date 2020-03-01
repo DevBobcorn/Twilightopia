@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "level=0": { "model": "twilightopia:block/pizza0" },
+        "level=1": { "model": "twilightopia:block/pizza1" },
+        "level=2": { "model": "twilightopia:block/pizza2" },
+        "level=3": { "model": "twilightopia:block/pizza3" }
+    }
+}

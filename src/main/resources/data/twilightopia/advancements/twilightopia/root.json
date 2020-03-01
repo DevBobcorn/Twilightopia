@@ -1,0 +1,35 @@
+{
+  "display": {
+    "icon": {
+      "item": "twilightopia:grassed_chocolate_block"
+    },
+    "title": {
+      "translate": "advancements.twilightopia.root.title"
+    },
+    "description": {
+      "translate": "advancements.twilightopia.root.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "twilightopia:textures/gui/advancements/backgrounds/choco.png"
+  },
+  "criteria": {
+    "get_blaze_and_gold": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "twilightopia:blaze_and_gold"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "get_blaze_and_gold"
+    ]
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "parent": "twilightopia:twilightopia/good_night",
+  "display": {
+    "icon": {
+      "item": "twilightopia:lodge_herb"
+    },
+    "title": {
+      "translate": "advancements.twilightopia.guide.title"
+    },
+    "description": {
+      "translate": "advancements.twilightopia.guide.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "get_herb": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "twilightopia:lodge_herb"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "get_herb"
+    ]
+  ]
+}

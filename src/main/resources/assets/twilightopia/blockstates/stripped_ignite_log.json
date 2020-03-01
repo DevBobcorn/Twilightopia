@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "axis=y":  { "model": "twilightopia:block/stripped_ignite_log" },
+        "axis=z":   { "model": "twilightopia:block/stripped_ignite_log", "x": 90 },
+        "axis=x":   { "model": "twilightopia:block/stripped_ignite_log", "x": 90, "y": 90 }
+    }
+}

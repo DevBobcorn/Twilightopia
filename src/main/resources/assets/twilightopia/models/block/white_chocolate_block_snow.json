@@ -1,0 +1,9 @@
+{
+    "parent": "block/cube_bottom_top",
+    "textures": {
+        "particle": "twilightopia:block/white_chocolate_block",
+        "bottom": "twilightopia:block/white_chocolate_block",
+        "top": "block/snow",
+        "side": "twilightopia:block/white_chocolate_block_snow"
+    }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "bark",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "twilightopia:cherry_log"
+    }
+  },
+  "result": {
+    "item": "twilightopia:cherry_wood",
+    "count": 3
+  }
+}

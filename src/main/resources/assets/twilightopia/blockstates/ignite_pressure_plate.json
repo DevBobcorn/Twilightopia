@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "powered=false": { "model": "twilightopia:block/ignite_pressure_plate" },
+        "powered=true": { "model": "twilightopia:block/ignite_pressure_plate_down" }
+    }
+}

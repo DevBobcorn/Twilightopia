@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "twilightopia:cherry_logs"
+    }
+  ],
+  "result": {
+    "item": "twilightopia:cherry_planks",
+    "count": 4
+  }
+}

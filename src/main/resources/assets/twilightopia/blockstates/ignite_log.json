@@ -1,0 +1,22 @@
+{
+    "variants": {
+        "axis=y,age=0":   { "model": "twilightopia:block/ignite_log" },
+        "axis=z,age=0":   { "model": "twilightopia:block/ignite_log", "x": 90 },
+        "axis=x,age=0":   { "model": "twilightopia:block/ignite_log", "x": 90, "y": 90 },
+        "axis=y,age=1":   { "model": "twilightopia:block/ignite_log_1" },
+        "axis=z,age=1":   { "model": "twilightopia:block/ignite_log_1", "x": 90 },
+        "axis=x,age=1":   { "model": "twilightopia:block/ignite_log_1", "x": 90, "y": 90 },
+        "axis=y,age=2":   { "model": "twilightopia:block/ignite_log_2" },
+        "axis=z,age=2":   { "model": "twilightopia:block/ignite_log_2", "x": 90 },
+        "axis=x,age=2":   { "model": "twilightopia:block/ignite_log_2", "x": 90, "y": 90 },
+        "axis=y,age=3":   { "model": "twilightopia:block/ignite_log_3" },
+        "axis=z,age=3":   { "model": "twilightopia:block/ignite_log_3", "x": 90 },
+        "axis=x,age=3":   { "model": "twilightopia:block/ignite_log_3", "x": 90, "y": 90 },
+        "axis=y,age=4":   { "model": "twilightopia:block/ignite_log_4" },
+        "axis=z,age=4":   { "model": "twilightopia:block/ignite_log_4", "x": 90 },
+        "axis=x,age=4":   { "model": "twilightopia:block/ignite_log_4", "x": 90, "y": 90 },
+        "axis=y,age=5":   { "model": "twilightopia:block/ignite_log_5" },
+        "axis=z,age=5":   { "model": "twilightopia:block/ignite_log_5", "x": 90 },
+        "axis=x,age=5":   { "model": "twilightopia:block/ignite_log_5", "x": 90, "y": 90 }
+    }
+}

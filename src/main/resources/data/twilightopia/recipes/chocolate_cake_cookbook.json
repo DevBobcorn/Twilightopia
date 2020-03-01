@@ -1,0 +1,28 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"$&$",
+		"*%*",
+		"###"
+	],
+	"key": {
+		"&": {
+			"item": "minecraft:milk_bucket"
+		},
+		"$": {
+			"item": "twilightopia:chocolate_bar"
+		},
+		"%": {
+			"item": "minecraft:egg"
+		},
+		"*": {
+			"item": "minecraft:sugar"
+		},
+		"#": {
+			"item": "minecraft:wheat"
+		}
+	},
+	"result": {
+		"item": "twilightopia:chocolate_cake"
+	}
+}

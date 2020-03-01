@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "@*@",
+    "*#*",
+    "@*@"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:ice"
+    },
+    "*": {
+      "item": "minecraft:slime_ball"
+    },
+    "@": {
+      "item": "minecraft:snowball"
+    }
+  },
+  "result": {
+    "item": "twilightopia:snome_block"
+  }
+}

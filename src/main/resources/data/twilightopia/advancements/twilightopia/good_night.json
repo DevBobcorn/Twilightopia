@@ -1,0 +1,29 @@
+{
+  "parent": "twilightopia:twilightopia/root",
+  "display": {
+    "icon": {
+      "item": "twilightopia:tuliportal"
+    },
+    "title": {
+      "translate": "advancements.twilightopia.good_night.title"
+    },
+    "description": {
+      "translate": "advancements.twilightopia.good_night.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "make_portal": {
+      "trigger": "twilightopia:make_tuliportal",
+      "conditions": {}
+    }
+  },
+  "requirements": [
+    [
+      "make_portal"
+    ]
+  ]
+}

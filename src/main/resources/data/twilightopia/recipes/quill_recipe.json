@@ -1,0 +1,13 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+            "item": "minecraft:feather"
+        },{
+            "item": "minecraft:ink_sac"
+        }
+    ],
+	"result": {
+		"item": "twilightopia:quill"
+	}
+}

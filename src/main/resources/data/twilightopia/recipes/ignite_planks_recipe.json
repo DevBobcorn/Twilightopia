@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "twilightopia:ignite_logs"
+    }
+  ],
+  "result": {
+    "item": "twilightopia:ignite_planks",
+    "count": 4
+  }
+}

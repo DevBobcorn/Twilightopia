@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "boat",
+  "pattern": [
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "twilightopia:ignite_planks"
+    }
+  },
+  "result": {
+    "item": "twilightopia:ignite_boat"
+  }
+}

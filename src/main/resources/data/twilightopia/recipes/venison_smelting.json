@@ -1,0 +1,9 @@
+{
+  "type": "smelting",
+  "ingredient": {
+    "item": "twilightopia:venison"
+  },
+  "result": "twilightopia:cooked_venison",
+  "experience": 0.35,
+  "cookingtime": 100
+}

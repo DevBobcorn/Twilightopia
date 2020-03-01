@@ -1,0 +1,33 @@
+{
+    "textures": {
+        "particle": "twilightopia:block/pizza",
+        "bottom": "twilightopia:block/pizza_bottom",
+        "top": "twilightopia:block/pizza",
+        "side": "twilightopia:block/pizza_side",
+		"inside": "twilightopia:block/pizza_inside"
+    },
+    "elements": [
+        {   "from": [ 0, 0, 0 ],
+            "to": [ 8, 2, 16 ],
+            "faces": {
+                "down":  { "texture": "#bottom", "cullface": "down" },
+                "up":    { "texture": "#top" },
+                "north": { "texture": "#side" },
+                "south": { "texture": "#side" },
+                "west":  { "texture": "#side" },
+                "east":  { "texture": "#inside" }
+            }
+        },
+        {   "from": [ 8, 0, 0 ],
+            "to": [ 16, 2, 8 ],
+            "faces": {
+                "down":  { "texture": "#bottom" },
+                "up":    { "texture": "#top" },
+                "north": { "texture": "#inside" },
+                "south": { "texture": "#side" },
+                "west":  { "texture": "#inside" },
+                "east":  { "texture": "#side" }
+            }
+        }
+    ]
+}

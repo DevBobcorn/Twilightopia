@@ -1,0 +1,7 @@
+{
+    "parent": "twilightopia:block/template_orientable_trapdoor_top",
+    "textures": {
+        "texture": "twilightopia:block/cherry_trapdoor",
+        "texture1": "twilightopia:block/cherry_planks"
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "parent": "block/inner_stairs",
+    "textures": {
+        "bottom": "twilightopia:block/cherry_planks",
+        "top": "twilightopia:block/cherry_planks",
+        "side": "twilightopia:block/cherry_planks"
+    }
+}

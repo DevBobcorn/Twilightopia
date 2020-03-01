@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "twilightopia:jelime_block"
+    }
+  ],
+  "result": {
+    "item": "twilightopia:jelly_ball",
+    "count": 9
+  }
+}

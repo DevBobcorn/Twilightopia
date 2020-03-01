@@ -1,0 +1,12 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+            "item": "twilightopia:ruby_block"
+        }
+    ],
+	"result": {
+		"item": "twilightopia:ruby",
+		"count": 9
+	}
+}

@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "twilightopia:block/ignite_log",
+        "side": "twilightopia:block/ignite_log"
+    }
+}

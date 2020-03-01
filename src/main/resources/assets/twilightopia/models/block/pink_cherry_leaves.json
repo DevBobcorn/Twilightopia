@@ -1,0 +1,6 @@
+{
+    "parent": "block/leaves",
+    "textures": {
+        "all": "twilightopia:block/cherry_leaves"
+    }
+}

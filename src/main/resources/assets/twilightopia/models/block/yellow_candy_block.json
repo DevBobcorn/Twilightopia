@@ -1,0 +1,6 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "twilightopia:block/yellow_candy_block"
+    }
+}

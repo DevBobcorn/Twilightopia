@@ -1,0 +1,34 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		" 21",
+		"3# ",
+		"456"
+	],
+	"key": {
+		"#": {
+			"item": "minecraft:fern"
+		},
+		"1": {
+			"item": "minecraft:cyan_dye"
+		},
+		"2": {
+			"item": "minecraft:blue_dye"
+		},
+		"3": {
+			"item": "minecraft:light_blue_dye"
+		},
+		"4": {
+			"item": "minecraft:pink_dye"
+		},
+		"5": {
+			"item": "minecraft:magenta_dye"
+		},
+		"6": {
+			"item": "minecraft:purple_dye"
+		}
+	},
+	"result": {
+		"item": "twilightopia:lodge_herb"
+	}
+}

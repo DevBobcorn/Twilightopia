@@ -1,0 +1,12 @@
+{
+    "variants": {
+        "age=0": { "model": "twilightopia:block/candy_cane0" },
+        "age=1": { "model": "twilightopia:block/candy_cane1" },
+        "age=2": { "model": "twilightopia:block/candy_cane2" },
+        "age=3": { "model": "twilightopia:block/candy_cane3" },
+        "age=4": { "model": "twilightopia:block/candy_cane4" },
+        "age=5": { "model": "twilightopia:block/candy_cane5" },
+        "age=6": { "model": "twilightopia:block/candy_cane6" },
+        "age=7": { "model": "twilightopia:block/candy_cane7" }
+    }
+}

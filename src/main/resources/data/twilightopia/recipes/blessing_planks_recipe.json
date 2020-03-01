@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"*#*",
+		"#$#",
+		"*#*"
+	],
+	"key": {
+		"#": {
+			"item": "twilightopia:lodge_herb"
+		},
+		"*": {
+			"item": "twilightopia:sakura"
+		},
+		"$": {
+			"item": "twilightopia:cherry_planks"
+		}
+	},
+	"result": {
+		"item": "twilightopia:blessing_planks"
+	}
+}

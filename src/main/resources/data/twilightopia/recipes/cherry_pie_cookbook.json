@@ -1,0 +1,15 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+        {
+            "item": "twilightopia:cherry"
+        },{
+            "item": "minecraft:sugar"
+        },{
+            "item": "minecraft:egg"
+        }
+    ],
+	"result": {
+		"item": "twilightopia:apple_pie"
+	}
+}

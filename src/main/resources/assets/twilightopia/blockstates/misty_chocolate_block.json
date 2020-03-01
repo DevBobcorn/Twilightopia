@@ -1,0 +1,11 @@
+{
+    "variants": {
+        "snowy=false": [
+            { "model": "twilightopia:block/misty_chocolate_block" },
+            { "model": "twilightopia:block/misty_chocolate_block", "y": 90 },
+            { "model": "twilightopia:block/misty_chocolate_block", "y": 180 },
+            { "model": "twilightopia:block/misty_chocolate_block", "y": 270 }
+        ],
+        "snowy=true":  { "model": "twilightopia:block/white_chocolate_block_snow" }
+    }
+}

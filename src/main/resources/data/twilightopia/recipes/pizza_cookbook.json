@@ -1,0 +1,25 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"   ",
+		"*%@",
+		"###"
+	],
+	"key": {
+		"%": {
+			"tag": "twilightopia:red_meat_cooked"
+		},
+		"*": {
+			"item": "twilightopia:tomato"
+		},
+		"@": {
+			"item": "twilightopia:cheese"
+		},
+		"#": {
+			"item": "minecraft:wheat"
+		}
+	},
+	"result": {
+		"item": "twilightopia:pizza"
+	}
+}

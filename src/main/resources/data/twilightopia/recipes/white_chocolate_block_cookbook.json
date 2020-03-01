@@ -1,0 +1,15 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"##",
+		"##"
+	],
+	"key": {
+		"#": {
+			"item": "twilightopia:white_chocolate_bar"
+		}
+	},
+	"result": {
+		"item": "twilightopia:white_chocolate_block"
+	}
+}

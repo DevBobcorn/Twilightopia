@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "axis=y": { "model": "twilightopia:block/ignite_wood" },
+        "axis=z": { "model": "twilightopia:block/ignite_wood", "x": 90 },
+        "axis=x": { "model": "twilightopia:block/ignite_wood", "x": 90, "y": 90 }
+    }
+}

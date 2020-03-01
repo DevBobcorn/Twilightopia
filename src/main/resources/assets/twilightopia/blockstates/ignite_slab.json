@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "twilightopia:block/ignite_slab" },
+        "type=top": { "model": "twilightopia:block/ignite_slab_top" },
+        "type=double": { "model": "twilightopia:block/ignite_planks" }
+    }
+}

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "twilightopia:ruby_ore"
+  },
+  "result": "twilightopia:ruby",
+  "experience": 1.0,
+  "cookingtime": 100
+}

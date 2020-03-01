@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "twilightopia:block/stripped_ignite_log_top",
+        "side": "twilightopia:block/stripped_ignite_log"
+    }
+}

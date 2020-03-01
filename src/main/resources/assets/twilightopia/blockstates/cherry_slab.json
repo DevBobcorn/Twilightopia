@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "twilightopia:block/cherry_slab" },
+        "type=top": { "model": "twilightopia:block/cherry_slab_top" },
+        "type=double": { "model": "twilightopia:block/cherry_planks" }
+    }
+}

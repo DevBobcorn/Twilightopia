@@ -1,0 +1,12 @@
+{
+    "variants": {
+        "age=0": { "model": "twilightopia:block/strawberry0" },
+        "age=1": { "model": "twilightopia:block/strawberry1" },
+        "age=2": { "model": "twilightopia:block/strawberry2" },
+        "age=3": { "model": "twilightopia:block/strawberry3" },
+        "age=4": { "model": "twilightopia:block/strawberry4" },
+        "age=5": { "model": "twilightopia:block/strawberry5" },
+        "age=6": { "model": "twilightopia:block/strawberry6" },
+        "age=7": { "model": "twilightopia:block/strawberry7" }
+    }
+}

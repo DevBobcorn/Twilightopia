@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "twilightopia:block/prophet_log"
+    },
+    "facing=east": {
+      "model": "twilightopia:block/prophet_log",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "twilightopia:block/prophet_log",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "twilightopia:block/prophet_log",
+      "y": 270
+    }
+  }
+}

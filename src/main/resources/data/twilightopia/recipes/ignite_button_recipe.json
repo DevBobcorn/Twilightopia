@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "wooden_button",
+  "ingredients": [
+    {
+      "item": "twilightopia:ignite_planks"
+    }
+  ],
+  "result": {
+    "item": "twilightopia:ignite_button"
+  }
+}

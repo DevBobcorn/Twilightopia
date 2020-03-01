@@ -1,0 +1,8 @@
+{
+    "parent": "twilightopia:block/door_bottom",
+    "textures": {
+        "bottom": "twilightopia:block/ignite_door_bottom",
+        "top": "twilightopia:block/ignite_door_top",
+        "side": "twilightopia:block/ignite_planks"
+    }
+}

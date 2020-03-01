@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"###",
+		"#$#",
+		"###"
+	],
+	"key": {
+		"#": {
+			"item": "minecraft:yellow_dye"
+		},
+		"$": {
+			"item": "twilightopia:candy_block"
+		}
+	},
+	"result": {
+		"item": "twilightopia:yellow_candy_block"
+	}
+}
