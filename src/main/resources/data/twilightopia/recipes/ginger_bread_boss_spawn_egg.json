@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_fence_gate",
+  "pattern": [
+    "###",
+    "#W#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "twilightopia:magic_debris"
+    },
+    "W": {
+      "item": "twilightopia:ginger_bread"
+    }
+  },
+  "result": {
+    "item": "twilightopia:ginger_bread_boss_spawn_egg"
+  }
+}

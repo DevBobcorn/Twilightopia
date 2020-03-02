@@ -109,4 +109,17 @@ public final class ModBlocks {
 	static public final Block SNOME_BLOCK = new SnomeBlock(Block.Properties.create(Material.CLAY, MaterialColor.CYAN).slipperiness(0.9F).sound(SoundType.SLIME));
 	static public final Block JELIME_BLOCK = new SlimeBlock(Block.Properties.create(Material.CLAY, MaterialColor.PINK).slipperiness(0.8F).sound(SoundType.SLIME));
 	static public final Block NEONLIME_BLOCK = new SlimeBlock(Block.Properties.create(Material.CLAY, MaterialColor.MAGENTA).slipperiness(0.8F).sound(SoundType.SLIME));
+	static public final Block GRANITE_ROOF = new RoofBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE));
+	static public final Block DIORITE_ROOF = new RoofBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE));
+	static public final Block ANDESITE_ROOF = new RoofBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE));
+	static public final Block POLISHED_GRANITE_ROOF = new RoofBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE));
+	static public final Block POLISHED_DIORITE_ROOF = new RoofBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE));
+	static public final Block POLISHED_ANDESITE_ROOF = new RoofBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE));
+	static public final Block GRANITE_PEDESTAL = new PedestalBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE));
+	static public final Block DIORITE_PEDESTAL = new PedestalBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE));
+	static public final Block ANDESITE_PEDESTAL = new PedestalBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE));
+	static public final Block POLISHED_GRANITE_PEDESTAL = new PedestalBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE));
+	static public final Block POLISHED_DIORITE_PEDESTAL = new PedestalBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE));
+	static public final Block POLISHED_ANDESITE_PEDESTAL = new PedestalBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F).sound(SoundType.STONE));
+	static public final Block OCEAN_LAMP = new OceanLampBlock(Block.Properties.create(Material.GLASS).hardnessAndResistance(0.5F, 1.0F).sound(SoundType.GLASS).lightValue(15));
 }

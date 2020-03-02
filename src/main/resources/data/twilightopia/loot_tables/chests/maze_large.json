@@ -129,12 +129,12 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 10,
-          "name": "minecraft:bucket"
+          "weight": 5,
+          "name": "twilightopia:magic_debris"
         },
         {
           "type": "minecraft:item",
-          "weight": 15,
+          "weight": 10,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -145,7 +145,7 @@
               }
             }
           ],
-          "name": "minecraft:redstone"
+          "name": "twilightopia:blaze_and_gold"
         },
         {
           "type": "minecraft:item",

@@ -18,6 +18,7 @@ import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
+import net.minecraft.entity.monster.IllusionerEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -137,5 +138,11 @@ public class SantaClausEntity extends MonsterEntity {
 				entityDropItem(ModItems.santa_boots);
 				break;
 		}
+		if (this.getHeldItemMainhand().getItem() == ForgeRegistries.ITEMS.getValue(new ResourceLocation(TwilightopiaMod.MODID, "illushroom"))) {
+			IllusionerEntity il = EntityType.ILLUSIONER.create(this.world);
+			il.copyLocationAndAnglesFrom(this);
+			this.world.addEntity(il);
+		} else
+		if (rand.nextInt(3) != 0) entityDropItem(this.getHeldItemMainhand());
 	}
 }

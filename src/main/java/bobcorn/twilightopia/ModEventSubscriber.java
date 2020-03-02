@@ -151,7 +151,20 @@ public final class ModEventSubscriber {
 				setup(ModBlocks.POTTED_ILLUSHROOM, "potted_illushroom"),
 				setup(ModBlocks.SNOME_BLOCK, "snome_block"),
 				setup(ModBlocks.JELIME_BLOCK, "jelime_block"),
-				setup(ModBlocks.NEONLIME_BLOCK, "neonlime_block")
+				setup(ModBlocks.NEONLIME_BLOCK, "neonlime_block"),
+				setup(ModBlocks.ANDESITE_PEDESTAL, "andesite_pedestal"),
+				setup(ModBlocks.DIORITE_PEDESTAL, "diorite_pedestal"),
+				setup(ModBlocks.GRANITE_PEDESTAL, "granite_pedestal"),
+				setup(ModBlocks.POLISHED_ANDESITE_PEDESTAL, "polished_andesite_pedestal"),
+				setup(ModBlocks.POLISHED_DIORITE_PEDESTAL, "polished_diorite_pedestal"),
+				setup(ModBlocks.POLISHED_GRANITE_PEDESTAL, "polished_granite_pedestal"),
+				setup(ModBlocks.ANDESITE_ROOF, "andesite_roof"),
+				setup(ModBlocks.DIORITE_ROOF, "diorite_roof"),
+				setup(ModBlocks.GRANITE_ROOF, "granite_roof"),
+				setup(ModBlocks.POLISHED_ANDESITE_ROOF, "polished_andesite_roof"),
+				setup(ModBlocks.POLISHED_DIORITE_ROOF, "polished_diorite_roof"),
+				setup(ModBlocks.POLISHED_GRANITE_ROOF, "polished_granite_roof"),
+				setup(ModBlocks.OCEAN_LAMP, "ocean_lamp")
 		);
 		LOGGER.debug("Registered Blocks");
 	}
@@ -220,7 +233,8 @@ public final class ModEventSubscriber {
 				setup(ModItems.cherry_sign, "cherry_sign"),
 				setup(ModItems.ignite_sign, "ignite_sign"),
 				setup(ModItems.cherry_boat, "cherry_boat"),
-				setup(ModItems.ignite_boat, "ignite_boat")
+				setup(ModItems.ignite_boat, "ignite_boat"),
+				setup(ModItems.magic_debris, "magic_debris")
 		);
 
 		// We need to go over the entire registry so that we include any potential Registry Overrides

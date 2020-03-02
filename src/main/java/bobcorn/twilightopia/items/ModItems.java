@@ -83,5 +83,6 @@ public final class ModItems {
 	public static final Item ignite_sign = new SignPlusItem(new Item.Properties().group(ModItemGroups.TWILIGHT_BLOCK_GROUP), ModBlocks.IGNITE_SIGN, ModBlocks.IGNITE_WALL_SIGN);
 	public static final Item cherry_boat = new BoatPlusItem(BoatPlusEntity.Type.CHERRY, new Item.Properties());
 	public static final Item ignite_boat = new BoatPlusItem(BoatPlusEntity.Type.IGNITE, new Item.Properties());
+	public static final Item magic_debris = new Item(new Item.Properties().group(ModItemGroups.TWILIGHT_WORLD_GROUP));
 }
 
