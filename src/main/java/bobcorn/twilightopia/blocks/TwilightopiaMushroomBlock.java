@@ -13,6 +13,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 public class TwilightopiaMushroomBlock extends TwilightopiaBushBlock implements IGrowable {
    protected static final VoxelShape SHAPE = Block.makeCuboidShape(5.0D, 0.0D, 5.0D, 11.0D, 9.0D, 11.0D);
@@ -60,29 +61,13 @@ public class TwilightopiaMushroomBlock extends TwilightopiaBushBlock implements 
       BlockState blockstate = worldIn.getBlockState(blockpos);
       Block block = blockstate.getBlock();
       if (block != Blocks.MYCELIUM && block != Blocks.PODZOL && !TwilightopiaSoilHelper.isChoco(worldIn, pos)) {
-         return worldIn.getLightSubtracted(pos, 0) < 13 && blockstate.canSustainPlant(worldIn, blockpos, net.minecraft.util.Direction.UP, this);
+         return worldIn.func_226659_b_(pos, 0) < 13 && blockstate.canSustainPlant(worldIn, blockpos, net.minecraft.util.Direction.UP, this);
       } else {
          return true;
       }
    }
 
    public boolean generateBigMushroom(IWorld worldIn, BlockPos pos, BlockState state, Random rand) {
-	   /*
-      worldIn.removeBlock(pos, false);
-      Feature<BigMushroomFeatureConfig> feature = null;
-      if (this == Blocks.BROWN_MUSHROOM) {
-         feature = Feature.HUGE_BROWN_MUSHROOM;
-      } else if (this == Blocks.RED_MUSHROOM) {
-         feature = Feature.HUGE_RED_MUSHROOM;
-      }
-
-      if (feature != null && feature.place(worldIn, worldIn.getChunkProvider().getChunkGenerator(), rand, pos, new BigMushroomFeatureConfig(true))) {
-         return true;
-      } else {
-         worldIn.setBlockState(pos, state, 3);
-         return false;
-      }
-      */
 	   return false;
    }
 
@@ -104,4 +89,10 @@ public class TwilightopiaMushroomBlock extends TwilightopiaBushBlock implements 
    public boolean needsPostProcessing(BlockState state, IBlockReader worldIn, BlockPos pos) {
       return true;
    }
+
+@Override
+public void func_225535_a_(ServerWorld p_225535_1_, Random p_225535_2_, BlockPos p_225535_3_, BlockState p_225535_4_) {
+	// TODO Auto-generated method stub
+	
+}
 }

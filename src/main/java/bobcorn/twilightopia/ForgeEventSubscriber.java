@@ -5,24 +5,19 @@ import java.util.Random;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import bobcorn.twilightopia.blocks.AbstractSignPlusBlock;
 import bobcorn.twilightopia.blocks.ModBlocks;
 import bobcorn.twilightopia.blocks.TwilightopiaButtonBlock;
 import bobcorn.twilightopia.blocks.TwilightopiaDoorBlock;
 import bobcorn.twilightopia.blocks.TwilightopiaPressurePlateBlock;
 import bobcorn.twilightopia.blocks.TwilightopiaSaplingBlock;
 import bobcorn.twilightopia.blocks.TwilightopiaSlabBlock;
-import bobcorn.twilightopia.blocks.TwilightopiaStairsBlock;
 import bobcorn.twilightopia.blocks.TwilightopiaTrapDoorBlock;
-import bobcorn.twilightopia.entity.ModEntityType;
+import bobcorn.twilightopia.entity.ModEntityTypes;
 import bobcorn.twilightopia.entity.passive.ChoxEntity;
 import bobcorn.twilightopia.entity.passive.ChoxEntity.ChoxType;
 import bobcorn.twilightopia.init.ModVanillaCompat;
-import bobcorn.twilightopia.items.BoatPlusItem;
 import bobcorn.twilightopia.items.ModItems;
 import bobcorn.twilightopia.items.QuillEdit;
-import bobcorn.twilightopia.items.SignPlusItem;
-import bobcorn.twilightopia.world.dimension.TwilightopiaDimensions;
 import net.minecraft.block.AbstractSignBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -55,16 +50,19 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
  * Subscribe to events from the FORGE EventBus that should be handled on both
  * PHYSICAL sides in this class
  */
+@SuppressWarnings("unused")
 @EventBusSubscriber(modid = TwilightopiaMod.MODID, bus = EventBusSubscriber.Bus.FORGE)
 public final class ForgeEventSubscriber {
 	private static final Logger LOGGER = LogManager.getLogger(TwilightopiaMod.MODID + " Forge Event Subscriber");
 	protected final static Random rand = new Random();
 
+	/*
 	@SubscribeEvent
 	public static void onRegisterDimensions(RegisterDimensionsEvent event) {
 		TwilightopiaDimensions.registerDimensions();
 		LOGGER.debug("Registered Dimensions");
 	}
+	*/
 
 	@SubscribeEvent
 	public static void onPlayerInteract(EntityInteractSpecific event) {
@@ -73,17 +71,17 @@ public final class ForgeEventSubscriber {
 		Entity target = event.getTarget();
 		if (!(target instanceof LivingEntity))
 			return;
-		if (itemUsed.getItem() == ModItems.chocolate_bar || itemUsed.getItem() == ModItems.white_chocolate_bar) {
+		if (itemUsed.getItem() == ModItems.chocolate_bar.get() || itemUsed.getItem() == ModItems.white_chocolate_bar.get()) {
 			if (target.getType() == EntityType.PARROT || target.getType() == EntityType.WOLF) {
 				if (!event.getPlayer().abilities.isCreativeMode) {
 					itemUsed.shrink(1);
 				}
 				if (target.getType() == EntityType.PARROT)
-					target.world.playSound((PlayerEntity) null, target.posX, target.posY, target.posZ,
+					target.world.playSound((PlayerEntity) null, target.func_226277_ct_(), target.func_226278_cu_(), target.func_226281_cx_(),
 							SoundEvents.ENTITY_PARROT_EAT, target.getSoundCategory(), 1.0F,
 							1.0F + (rand.nextFloat() - rand.nextFloat()) * 0.2F);
 				else
-					target.world.playSound((PlayerEntity) null, target.posX, target.posY, target.posZ,
+					target.world.playSound((PlayerEntity) null, target.func_226277_ct_(), target.func_226278_cu_(), target.func_226281_cx_(),
 							SoundEvents.ENTITY_WOLF_SHAKE, target.getSoundCategory(), 1.0F,
 							1.0F + (rand.nextFloat() - rand.nextFloat()) * 0.2F);
 
@@ -92,7 +90,7 @@ public final class ForgeEventSubscriber {
 					target.attackEntityFrom(DamageSource.causePlayerDamage(player), Float.MAX_VALUE);
 				}
 			} else if (target instanceof FoxEntity) { // Fox or Chox
-				transfox(itemUsed.getItem() == ModItems.chocolate_bar, (FoxEntity) target);
+				transfox(itemUsed.getItem() == ModItems.chocolate_bar.get(), (FoxEntity) target);
 			}
 		}
 	}
@@ -100,7 +98,7 @@ public final class ForgeEventSubscriber {
 	@SuppressWarnings("deprecation")
 	protected static void transfox(boolean dark, FoxEntity fox) {
 		if (!fox.removed) {
-			ChoxEntity choxentity = ModEntityType.CHOX.create(fox.world);
+			ChoxEntity choxentity = ModEntityTypes.CHOX.get().create(fox.world);
 			choxentity.copyLocationAndAnglesFrom(fox);
 			choxentity.setCanPickUpLoot(fox.canPickUpLoot());
 			choxentity.setNoAI(fox.isAIDisabled());
@@ -149,51 +147,46 @@ public final class ForgeEventSubscriber {
 					}
 				}
 			}
-		} else if (player.getHeldItemMainhand().getItem() == ModItems.quill
-				&& (blockstate.getBlock() instanceof AbstractSignBlock
-						|| blockstate.getBlock() instanceof AbstractSignPlusBlock)) {
-			// System.out.println("Editin' Sign");
-			QuillEdit.Use(world, blockpos, player);
 		}
 	}
 
 	@SubscribeEvent
 	public static void onItemBurn(FurnaceFuelBurnTimeEvent event) {
-		if (event.getItemStack().getItem() instanceof BoatPlusItem)
-			event.setBurnTime(1200);
-		else if (event.getItemStack().getItem() instanceof SignPlusItem)
-			event.setBurnTime(200);
-		else if (event.getItemStack().getItem() instanceof BlockItem) {
+		if (event.getItemStack().getItem() instanceof BlockItem) {
 			Block target = ((BlockItem) event.getItemStack().getItem()).getBlock();
-			if (target == ModBlocks.CHERRY_LOG)
+			if (target == ModBlocks.CHERRY_LOG.get())
 				event.setBurnTime(300);
-			else if (target == ModBlocks.STRIPPED_CHERRY_LOG)
+			else if (target == ModBlocks.STRIPPED_CHERRY_LOG.get())
 				event.setBurnTime(300);
-			else if (target == ModBlocks.CHERRY_WOOD)
+			else if (target == ModBlocks.CHERRY_WOOD.get())
 				event.setBurnTime(300);
-			else if (target == ModBlocks.STRIPPED_CHERRY_WOOD)
+			else if (target == ModBlocks.STRIPPED_CHERRY_WOOD.get())
 				event.setBurnTime(300);
-			else if (target == ModBlocks.CHERRY_PLANKS)
+			else if (target == ModBlocks.CHERRY_PLANKS.get())
 				event.setBurnTime(300);
-			else if (target == ModBlocks.BLESSING_PLANKS)
+			else if (target == ModBlocks.BLESSING_PLANKS.get())
 				event.setBurnTime(300);
-			else if (target == ModBlocks.CHERRY_FENCE)
+			else if (target == ModBlocks.CHERRY_FENCE.get())
 				event.setBurnTime(300);
-			else if (target == ModBlocks.CHERRY_FENCE_GATE)
+			else if (target == ModBlocks.CHERRY_FENCE_GATE.get())
 				event.setBurnTime(300);
-			else if (target == ModBlocks.IGNITE_LOG)
+			else if (target == ModBlocks.CHERRY_STAIRS.get())
+				event.setBurnTime(300);
+			else if (target == ModBlocks.IGNITE_LOG.get())
 				event.setBurnTime(350);
-			else if (target == ModBlocks.STRIPPED_IGNITE_LOG)
+			else if (target == ModBlocks.STRIPPED_IGNITE_LOG.get())
 				event.setBurnTime(350);
-			else if (target == ModBlocks.IGNITE_WOOD)
+			else if (target == ModBlocks.IGNITE_WOOD.get())
 				event.setBurnTime(350);
-			else if (target == ModBlocks.STRIPPED_IGNITE_WOOD)
+			else if (target == ModBlocks.STRIPPED_IGNITE_WOOD.get())
 				event.setBurnTime(350);
-			else if (target == ModBlocks.IGNITE_PLANKS)
+			else if (target == ModBlocks.IGNITE_PLANKS.get())
 				event.setBurnTime(350);
-			else if (target == ModBlocks.IGNITE_FENCE)
+			else if (target == ModBlocks.IGNITE_FENCE.get())
 				event.setBurnTime(300);
-			else if (target == ModBlocks.IGNITE_FENCE_GATE)
+			else if (target == ModBlocks.IGNITE_FENCE_GATE.get())
+				event.setBurnTime(300);
+			else if (target == ModBlocks.IGNITE_STAIRS.get())
 				event.setBurnTime(300);
 			else if (target instanceof TwilightopiaButtonBlock)
 				event.setBurnTime(100);
@@ -203,8 +196,6 @@ public final class ForgeEventSubscriber {
 				event.setBurnTime(300);
 			else if (target instanceof TwilightopiaSlabBlock)
 				event.setBurnTime(150);
-			else if (target instanceof TwilightopiaStairsBlock)
-				event.setBurnTime(300);
 			else if (target instanceof TwilightopiaPressurePlateBlock)
 				event.setBurnTime(300);
 			else if (target instanceof TwilightopiaSaplingBlock)

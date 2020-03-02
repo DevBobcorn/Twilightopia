@@ -1,5 +1,10 @@
 package bobcorn.twilightopia.tileentity;
 
+import java.io.BufferedReader;
+import java.io.Closeable;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
@@ -8,13 +13,15 @@ import java.util.function.Predicate;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import org.apache.commons.io.IOUtils;
+
 import com.google.common.collect.Sets;
 
-import bobcorn.twilightopia.StoryTeller;
 import bobcorn.twilightopia.TwilightopiaMod;
 import bobcorn.twilightopia.blocks.ModBlocks;
 import bobcorn.twilightopia.container.ProphetLogContainer;
 import bobcorn.twilightopia.items.ModItems;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
@@ -27,16 +34,17 @@ import net.minecraft.item.Items;
 import net.minecraft.nbt.ByteNBT;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.IntNBT;
-import net.minecraft.nbt.ListNBT;
 import net.minecraft.nbt.StringNBT;
+import net.minecraft.resources.IResource;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.items.ItemStackHandler;
 
@@ -64,10 +72,11 @@ public class ProphetLogTileEntity extends TileEntity implements INamedContainerP
 	private static final String ITEM_SLOT_TAG = "item_slot";
 	private static final String BOOK_SLOT_TAG = "result_slot";
 
+	private boolean hasbell = false;
 	public final ItemStackHandler rubySlot = new ItemStackHandler(1) {
 		@Override
 		public boolean isItemValid(final int slot, @Nonnull final ItemStack stack) {
-			return !stack.isEmpty() && stack.getItem() == ModItems.ruby;
+			return !stack.isEmpty() && stack.getItem() == ModItems.ruby.get();
 		}
 
 		@Override
@@ -141,11 +150,11 @@ public class ProphetLogTileEntity extends TileEntity implements INamedContainerP
 	@Nonnull
 	@Override
 	public ITextComponent getDisplayName() {
-		return new TranslationTextComponent(ModBlocks.PROPHET_LOG.getTranslationKey());
+		return new TranslationTextComponent(ModBlocks.PROPHET_LOG.get().getTranslationKey());
 	}
 
 	public ProphetLogTileEntity() {
-		super(ModTileEntityType.PROPHET_LOG);
+		super(ModTileEntityType.PROPHET_LOG.get());
 	}
 
 	public ProphetLogTileEntity(TileEntityType<?> tileEntityTypeIn) {
@@ -166,37 +175,81 @@ public class ProphetLogTileEntity extends TileEntity implements INamedContainerP
 			return;
 		tellingStory = true;
 		System.out.println("Booknum: " + bookSlot.getStackInSlot(0).getCount());
-		TranslationTextComponent prophetName = new TranslationTextComponent(ModBlocks.PROPHET_LOG.getTranslationKey());
+		TranslationTextComponent prophetName = new TranslationTextComponent(ModBlocks.PROPHET_LOG.get().getTranslationKey());
 
-		String story = StoryTeller.GetStory(itemSlot.getStackInSlot(0));
+		String story = GetStory(itemSlot.getStackInSlot(0));
 
 		if (story != "") {
 			ItemStack NewBookStack = new ItemStack(Items.WRITTEN_BOOK);
-			NewBookStack.setTagInfo("resolved", new ByteNBT((byte) 1));
-			NewBookStack.setTagInfo("generation", new IntNBT(0));
-			NewBookStack.setTagInfo("author", new StringNBT(prophetName.getString()));
-			NewBookStack.setTagInfo("title",
-					new StringNBT(I18n.format("texts." + TwilightopiaMod.MODID + ".book_of_story")));
-
+			NewBookStack.setTagInfo("resolved", ByteNBT.func_229671_a_((byte) 1));
+			NewBookStack.setTagInfo("generation", IntNBT.func_229692_a_(0));
+			NewBookStack.setTagInfo("author", StringNBT.func_229705_a_(prophetName.getString()));
+			NewBookStack.setTagInfo("title", StringNBT.func_229705_a_(I18n.format("texts." + TwilightopiaMod.MODID + ".book_of_story")));
+			/*
 			ListNBT NewPageList = new ListNBT();
-			NewPageList.add(new StringNBT(story));
+			NewPageList.add(StringNBT.func_229705_a_(story));
 			NewBookStack.setTagInfo("pages", NewPageList);
-
+			*/
+			//TODO: Write book
 			bookSlot.setStackInSlot(0, NewBookStack);
 			rubySlot.getStackInSlot(0).shrink(1);
-			//itemSlot.getStackInSlot(0).shrink(1);
+			itemSlot.getStackInSlot(0).shrink(1);
 		}
 
 		tellingStory = false;
 	}
+
+	private String GetStory(ItemStack Target) {
+		IResource iresource = null;
+		String lines = "";
+		try {
+			System.out.println("Tellin' Story From Path " + getPath(Target));
+
+			String s = "" + TextFormatting.WHITE + TextFormatting.OBFUSCATED + TextFormatting.GREEN
+					+ TextFormatting.AQUA;
+
+			iresource = Minecraft.getInstance().getResourceManager()
+					.getResource(new ResourceLocation(TwilightopiaMod.MODID, getPath(Target)));
+			System.out.println("Story Found.");
+			InputStream inputstream = iresource.getInputStream();
+			BufferedReader bufferedreader = new BufferedReader(
+					new InputStreamReader(inputstream, StandardCharsets.UTF_8));
+			Random random = new Random(8124371L);
+			String s1;
+			while ((s1 = bufferedreader.readLine()) != null) {
+				String s2;
+				String s3;
+				for (s1 = s1.replaceAll("PLAYERNAME", Minecraft.getInstance().getSession().getUsername()); s1
+						.contains(s); s1 = s2 + TextFormatting.WHITE + TextFormatting.OBFUSCATED
+								+ "XXXXXXXX".substring(0, random.nextInt(4) + 3) + s3) {
+					int j = s1.indexOf(s);
+					s2 = s1.substring(0, j);
+					s3 = s1.substring(j + s.length());
+				}
+				System.out.println("Line: " + s1);
+				lines = lines.concat(s1 + '\n');
+			}
+			inputstream.close();
+		} catch (Exception exception) {
+			// System.out.println("No Story / Execution Error!");
+		} finally {
+			IOUtils.closeQuietly((Closeable) iresource);
+		}
+		return lines;
+	}
+
+	private String getPath(ItemStack Target) {
+		return "stories/" + Minecraft.getInstance().getLanguageManager().getCurrentLanguage().getCode() + '/'
+				+ Target.getItem().getTranslationKey() + ".txt";
+	}
 	
 	@Override
 	public void tick() {
-		ringBell();
+		if (hasbell) ringBell();
 	}
-	
+
 	private boolean ringBell() {
-		if (rand.nextInt(100) == 0 && checkBell()) {
+		if (rand.nextInt(50) == 0) {
 			List<MobEntity> list = getWorld().getEntitiesWithinAABB(MobEntity.class,
 					ZERO_AABB.offset(getPos()).grow(20.0D), WARNING);
 			if (!list.isEmpty()) {
@@ -211,16 +264,6 @@ public class ProphetLogTileEntity extends TileEntity implements INamedContainerP
 		} else {
 			return false;
 		}
-	}
-	
-	private int rad = 3;
-	private boolean checkBell() {
-		for (int x = getPos().getX() - rad;x <= getPos().getX() + rad;x++)
-			for (int z = getPos().getZ() - rad;z <= getPos().getZ() + rad;z++)
-				for (int y = getPos().getY();y <= getPos().getY() + rad && y < getWorld().getMaxHeight();y++)
-					if (getWorld().getBlockState(new BlockPos(x,y,z)).getBlock() == ModBlocks.BELL_LEAVES)
-						return true;
-		return false;
 	}
 
 	protected float getSoundPitch() {

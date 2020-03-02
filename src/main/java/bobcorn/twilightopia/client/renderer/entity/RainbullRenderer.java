@@ -14,7 +14,7 @@ public class RainbullRenderer extends MobRenderer<RainbullEntity, RainbullModel<
       super(renderManagerIn, new RainbullModel<>(), 0.7F);
    }
 
-   protected ResourceLocation getEntityTexture(RainbullEntity entity) {
+   public ResourceLocation getEntityTexture(RainbullEntity entity) {
       return entity.getBullTypeTex();
    }
 }

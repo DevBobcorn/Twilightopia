@@ -2,9 +2,6 @@ package bobcorn.twilightopia.blocks;
 
 import com.google.common.collect.Maps;
 
-import bobcorn.twilightopia.entity.ModEntityType;
-import bobcorn.twilightopia.entity.monster.RatEntity;
-
 import java.util.Map;
 
 import net.minecraft.block.Block;
@@ -41,13 +38,16 @@ public class RatBlock extends Block {
    public void onBlockHarvested(World worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
       super.onBlockHarvested(worldIn, pos, state, player);
       
-	  //System.out.println("Spawn Drops");
+	  System.out.println("Spawn Drops");
       if (!worldIn.isRemote && worldIn.getGameRules().getBoolean(GameRules.DO_TILE_DROPS) && EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, player.getHeldItemMainhand()) == 0) {
+    	  /*
          RatEntity ratentity = ModEntityType.RAT.create(worldIn);
-         //System.out.println("Rat Spawned in " + worldIn.getWorldType().getName());
+         System.out.println("Rat Spawned in " + worldIn.getWorldType().getName());
          ratentity.setLocationAndAngles((double)pos.getX() + 0.5D, (double)pos.getY(), (double)pos.getZ() + 0.5D, 0.0F, 0.0F);
          worldIn.addEntity(ratentity);
          ratentity.spawnExplosionParticle();
+         */
+    	  //TODO: ADD RATS 
       }
    }
 

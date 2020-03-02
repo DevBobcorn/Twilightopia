@@ -11,6 +11,7 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
@@ -41,12 +42,7 @@ public class ProphetLogBlock extends HorizontalBlock {
 	@Nullable
 	@Override
 	public TileEntity createTileEntity(final BlockState state, final IBlockReader world) {
-		return ModTileEntityType.PROPHET_LOG.create();
-	}
-
-	@Override
-	public boolean isSolid(final BlockState state) {
-		return true;
+		return ModTileEntityType.PROPHET_LOG.get().create();
 	}
 
 	@OnlyIn(Dist.CLIENT)
@@ -89,7 +85,7 @@ public class ProphetLogBlock extends HorizontalBlock {
 	}
 
 	@Override
-	public boolean onBlockActivated(final BlockState state, final World worldIn, final BlockPos pos,
+	public ActionResultType func_225533_a_(final BlockState state, final World worldIn, final BlockPos pos,
 			final PlayerEntity player, final Hand handIn, final BlockRayTraceResult hit) {
 		if (!worldIn.isRemote) {
 			final TileEntity tileEntity = worldIn.getTileEntity(pos);
@@ -97,9 +93,9 @@ public class ProphetLogBlock extends HorizontalBlock {
 				NetworkHooks.openGui(((ServerPlayerEntity) player), ((ProphetLogTileEntity) tileEntity), pos);
 			}
 		}
-		return true;
+		return ActionResultType.SUCCESS;
 	}
-	
+
 	public BlockState getStateForPlacement(BlockItemUseContext context) {
 		return this.getDefaultState().with(FACING, context.getPlacementHorizontalFacing().getOpposite());
 	}

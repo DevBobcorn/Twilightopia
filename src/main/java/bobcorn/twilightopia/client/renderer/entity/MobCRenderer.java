@@ -17,7 +17,7 @@ public class MobCRenderer extends MobRenderer<MobCEntity, MobCModel<MobCEntity>>
       super(renderManagerIn, new MobCModel<>(), 0.7F);
    }
 
-   protected ResourceLocation getEntityTexture(MobCEntity entity) {
+   public ResourceLocation getEntityTexture(MobCEntity entity) {
       return TEXTURES;
    }
 }

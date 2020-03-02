@@ -1,13 +1,11 @@
 package bobcorn.twilightopia.client.renderer.entity;
 
-import com.mojang.blaze3d.platform.GlStateManager;
-
+import com.mojang.blaze3d.matrix.MatrixStack;
 import bobcorn.twilightopia.TwilightopiaMod;
 import bobcorn.twilightopia.client.renderer.entity.layers.ChoxHeldItemLayer;
 import bobcorn.twilightopia.entity.passive.ChoxEntity;
 
-import javax.annotation.Nullable;
-
+import net.minecraft.client.renderer.Vector3f;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.model.FoxModel;
@@ -28,19 +26,20 @@ public class ChoxRenderer extends MobRenderer<ChoxEntity, FoxModel<ChoxEntity>> 
       this.addLayer(new ChoxHeldItemLayer(this));
    }
 
-   protected void applyRotations(ChoxEntity entityLiving, float ageInTicks, float rotationYaw, float partialTicks) {
-      super.applyRotations(entityLiving, ageInTicks, rotationYaw, partialTicks);
-      if (entityLiving.func_213480_dY() || entityLiving.func_213472_dX()) {
-         GlStateManager.rotatef(-MathHelper.lerp(partialTicks, entityLiving.prevRotationPitch, entityLiving.rotationPitch), 1.0F, 0.0F, 0.0F);
-      }
-   }
+   protected void func_225621_a_(ChoxEntity p_225621_1_, MatrixStack p_225621_2_, float p_225621_3_, float p_225621_4_, float p_225621_5_) {
+	      super.func_225621_a_(p_225621_1_, p_225621_2_, p_225621_3_, p_225621_4_, p_225621_5_);
+	      if (p_225621_1_.func_213480_dY() || p_225621_1_.func_213472_dX()) {
+	         float f = -MathHelper.lerp(p_225621_5_, p_225621_1_.prevRotationPitch, p_225621_1_.rotationPitch);
+	         p_225621_2_.func_227863_a_(Vector3f.field_229179_b_.func_229187_a_(f));
+	      }
 
-   @Nullable
-   protected ResourceLocation getEntityTexture(ChoxEntity entity) {
-      if (entity.getChoxType() == ChoxEntity.ChoxType.DARK) {
-         return entity.isSleeping() ? field_217768_j : field_217767_a;
-      } else {
-         return entity.isSleeping() ? field_217770_l : field_217769_k;
-      }
-   }
+	   }
+
+	   public ResourceLocation getEntityTexture(ChoxEntity entity) {
+	      if (entity.getVariantType() == ChoxEntity.Type.RED) {
+	         return entity.isSleeping() ? field_217768_j : field_217767_a;
+	      } else {
+	         return entity.isSleeping() ? field_217770_l : field_217769_k;
+	      }
+	   }
 }

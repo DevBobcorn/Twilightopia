@@ -17,7 +17,7 @@ public class RatRenderer extends MobRenderer<RatEntity, RatModel<RatEntity>> {
       super(renderManagerIn, new RatModel<>(), 0.4F);
    }
 
-   protected ResourceLocation getEntityTexture(RatEntity entity) {
+   public ResourceLocation getEntityTexture(RatEntity entity) {
       return RAT_TEXTURE;
    }
 }

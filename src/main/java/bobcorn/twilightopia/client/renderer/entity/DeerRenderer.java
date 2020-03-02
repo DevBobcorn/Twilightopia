@@ -14,7 +14,7 @@ public class DeerRenderer extends MobRenderer<DeerEntity, DeerModel<DeerEntity>>
       super(renderManagerIn, new DeerModel<>(), 0.7F);
    }
 
-   protected ResourceLocation getEntityTexture(DeerEntity entity) {
+   public ResourceLocation getEntityTexture(DeerEntity entity) {
       return entity.getElkTypeTex();
    }
 }

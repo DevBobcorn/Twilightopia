@@ -6,14 +6,14 @@ import bobcorn.twilightopia.client.renderer.ProjectableMapModel;
 import bobcorn.twilightopia.tileentity.ProjectableTileEntity;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.resources.I18n;
-import net.minecraftforge.fml.client.config.GuiButtonExt;
+import net.minecraftforge.fml.client.gui.widget.ExtendedButton;
 
 public class ProjectableScreen extends Screen {
 
 	private final ProjectableTileEntity tileEntity;
 
 	public ProjectableScreen(final ProjectableTileEntity tileEntity) {
-		super(ModBlocks.PROJECTABLE.getNameTextComponent());
+		super(ModBlocks.PROJECTABLE.get().getNameTextComponent());
 		this.tileEntity = tileEntity;
 	}
 
@@ -29,10 +29,10 @@ public class ProjectableScreen extends Screen {
 		final int halfH = this.height / 2;
 		// "Refresh Mini Model" button rebuilds the tile's MiniModel
 		// "Done" button exits the GUI
-		this.addButton(new GuiButtonExt(halfW, halfH, 150, 20, I18n.format("gui.done"),
+		this.addButton(new ExtendedButton(halfW, halfH, 150, 20, I18n.format("gui.done"),
 				$ -> this.minecraft.displayGuiScreen(null)
 		));
-		this.addButton(new GuiButtonExt(0, halfH, 150, 20, I18n.format("gui." + TwilightopiaMod.MODID + ".refresh"),
+		this.addButton(new ExtendedButton(0, halfH, 150, 20, I18n.format("gui." + TwilightopiaMod.MODID + ".refresh"),
 				$ -> {
 					final ProjectableMapModel miniMap = this.tileEntity.mapModel;
 					if (miniMap != null)

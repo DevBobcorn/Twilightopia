@@ -25,7 +25,7 @@ public class ProphetLogContainer extends Container {
 	
 	public ProphetLogContainer(final int windowId, final ProphetLogTileEntity tileEntity,
 			final PlayerInventory playerInventory, final PlayerEntity player) {
-		super(ModContainerType.PROPHET_LOG, windowId);
+		super(ModContainerType.PROPHET_LOG.get(), windowId);
 
 		canInteractWithCallable = IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos());
 		this.tileEntity = tileEntity;
@@ -34,7 +34,7 @@ public class ProphetLogContainer extends Container {
 	}
 	
 	public ProphetLogContainer(final int windowId, final PlayerInventory playerInventory, PacketBuffer data) {
-		super(ModContainerType.PROPHET_LOG, windowId);
+		super(ModContainerType.PROPHET_LOG.get(), windowId);
 
 		final ProphetLogTileEntity tileEntity = getProphetLogTileEntity(playerInventory, data);
 		this.canInteractWithCallable = IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos());
@@ -91,6 +91,6 @@ public class ProphetLogContainer extends Container {
 	
 	@Override
 	public boolean canInteractWith(@Nonnull final PlayerEntity player) {
-		return isWithinUsableDistance(canInteractWithCallable, player, ModBlocks.PROPHET_LOG);
+		return isWithinUsableDistance(canInteractWithCallable, player, ModBlocks.PROPHET_LOG.get());
 	}
 }

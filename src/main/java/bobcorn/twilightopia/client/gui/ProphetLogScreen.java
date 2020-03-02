@@ -1,6 +1,6 @@
 package bobcorn.twilightopia.client.gui;
 
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 
 import bobcorn.twilightopia.TwilightopiaMod;
 import bobcorn.twilightopia.container.ProphetLogContainer;
@@ -34,7 +34,7 @@ public class ProphetLogScreen extends ContainerScreen<ProphetLogContainer> {
 
 	@Override
 	protected void drawGuiContainerBackgroundLayer(final float partialTicks, final int mouseX, final int mouseY) {
-		GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+		RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 		this.minecraft.getTextureManager().bindTexture(BACKGROUND_TEXTURE);
 		int startX = this.guiLeft;
 		int startY = this.guiTop;

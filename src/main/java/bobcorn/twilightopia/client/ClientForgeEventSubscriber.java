@@ -4,7 +4,6 @@ import com.mojang.blaze3d.platform.GLX;
 import com.mojang.blaze3d.platform.GlStateManager;
 
 import bobcorn.twilightopia.TwilightopiaMod;
-import bobcorn.twilightopia.effects.ModEffects;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.entity.LivingEntity;
@@ -21,8 +20,10 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
  * Subscribe to events from the FORGE EventBus that should be handled on the
  * PHYSICAL CLIENT side in this class
  */
+@SuppressWarnings("unused")
 @EventBusSubscriber(modid = TwilightopiaMod.MODID, bus = EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 public final class ClientForgeEventSubscriber {
+	/*
 	private static boolean UsingShaderN = false;
 	private static boolean UsingShaderF = false;
 	
@@ -32,7 +33,7 @@ public final class ClientForgeEventSubscriber {
 			return;
 		LivingEntity entity = (LivingEntity) event.getInfo().getRenderViewEntity();
 
-		double d0 = event.getInfo().getProjectedView().y * Minecraft.getInstance().world.dimension.getVoidFogYFactor() * 2F;
+		double d0 = event.getInfo().getProjectedView().y * Minecraft.getInstance().world.dimension.getVoidFogYFactor();
 		if (event.getInfo().getRenderViewEntity() instanceof LivingEntity) {
 			if (entity.isPotionActive(ModEffects.HEAVY_MIST)) {
 				int i = ((LivingEntity) event.getInfo().getRenderViewEntity())
@@ -43,15 +44,9 @@ public final class ClientForgeEventSubscriber {
 					d0 = 0.0D;
 				if (d0 < 1.0D) {
 					d0 = 0.1D;
-					if (((double) event.getRed() * d0) <= 0.7D)
-						event.setRed((float) ((double) event.getRed() * d0) + 0.3F);
-					else event.setRed(1.0F);
-					if (((double) event.getGreen() * d0) <= 0.7D)
-						event.setGreen((float) ((double) event.getGreen() * d0) + 0.3F);
-					else event.setGreen(1.0F);
-					if (((double) event.getBlue() * d0) <= 0.7D)
-						event.setBlue((float) ((double) event.getBlue() * d0) + 0.3F);
-					else event.setBlue(1.0F);
+					event.setRed((float) ((double) event.getRed() * d0));
+					event.setGreen((float) ((double) event.getGreen() * d0));
+					event.setBlue((float) ((double) event.getBlue() * d0));
 				}
 			} else if (entity.isPotionActive(ModEffects.FROZEN)
 					&& entity.getActivePotionMap().get(ModEffects.FROZEN).getDuration() > 5) {
@@ -140,4 +135,5 @@ public final class ClientForgeEventSubscriber {
 			GlStateManager.color3f(0.682f - proc, 0.807f - proc, 1f);
 		}
 	}
+	*/
 }

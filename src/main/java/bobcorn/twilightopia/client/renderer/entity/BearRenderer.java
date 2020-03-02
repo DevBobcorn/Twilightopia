@@ -7,7 +7,7 @@ import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
 
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -19,12 +19,12 @@ public class BearRenderer extends MobRenderer<BearEntity, BearModel<BearEntity>>
       super(renderManagerIn, new BearModel<>(), 0.9F);
    }
 
-   protected ResourceLocation getEntityTexture(BearEntity entity) {
+   public ResourceLocation getEntityTexture(BearEntity entity) {
       return BEAR_TEXTURE;
    }
-
-   protected void preRenderCallback(BearEntity entitylivingbaseIn, float partialTickTime) {
-      GlStateManager.scalef(1.2F, 1.2F, 1.2F);
-      super.preRenderCallback(entitylivingbaseIn, partialTickTime);
+   
+   protected void func_225620_a_(BearEntity p_225620_1_, MatrixStack p_225620_2_, float p_225620_3_) {
+      p_225620_2_.func_227862_a_(1.2F, 1.2F, 1.2F);
+      super.func_225620_a_(p_225620_1_, p_225620_2_, p_225620_3_);
    }
 }

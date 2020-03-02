@@ -11,11 +11,12 @@ import net.minecraft.block.material.MaterialColor;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.PickaxeItem;
+import net.minecraft.item.Items;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Rotation;
@@ -24,6 +25,7 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 public class IgniteLogBlock extends LogBlock implements IGrowable {
    public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.AXIS;
@@ -38,16 +40,17 @@ public class IgniteLogBlock extends LogBlock implements IGrowable {
 	   return 12;
    }
    
+   //On Block Activated
    @Override
-   public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity entityIn, Hand handIn, BlockRayTraceResult hit) {
+   public ActionResultType func_225533_a_(BlockState state, World worldIn, BlockPos pos, PlayerEntity entityIn, Hand handIn, BlockRayTraceResult hit) {
 	   if (state.get(AGE) >= 5) {
-		   if (entityIn.getHeldItemMainhand().getItem() instanceof PickaxeItem) {
-			   spawnAsEntity(worldIn,pos,new ItemStack(ModItems.flame_nut));
+		   if (entityIn.getHeldItemMainhand().getItem().equals(Items.DIAMOND_PICKAXE) || entityIn.getHeldItemMainhand().getItem().equals(Items.GOLDEN_PICKAXE)) {
+			   spawnAsEntity(worldIn,pos,new ItemStack(ModItems.flame_nut.get()));
 			   worldIn.setBlockState(pos, harvestNut(state,worldIn,pos), 3);
-			   return true;
+			   return ActionResultType.SUCCESS;
 		   }
 	   }
-	   return false;
+	   return ActionResultType.FAIL;
    }
    
    /**
@@ -83,8 +86,9 @@ public class IgniteLogBlock extends LogBlock implements IGrowable {
       return this.getDefaultState().with(AXIS, context.getFace().getAxis());
    }
    
+   //Random Tick TODO Confirm
    @Override
-   public void randomTick(BlockState state, World worldIn, BlockPos pos, Random random) {
+   public void func_225542_b_(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
 	   worldIn.setBlockState(pos, updateAge(state, worldIn, pos), 3);
    }
 
@@ -111,9 +115,11 @@ public class IgniteLogBlock extends LogBlock implements IGrowable {
 	public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, BlockState state) {
 		return true;
 	}
-	
+
+	//grow
 	@Override
-	public void grow(World worldIn, Random rand, BlockPos pos, BlockState state) {
-		worldIn.setBlockState(pos, growNut(state,worldIn,pos), 3);
+	public void func_225535_a_(ServerWorld p_225535_1_, Random p_225535_2_, BlockPos p_225535_3_,
+			BlockState p_225535_4_) {
+		p_225535_1_.setBlockState(p_225535_3_, growNut(p_225535_4_,p_225535_1_,p_225535_3_), 3);
 	}
 }

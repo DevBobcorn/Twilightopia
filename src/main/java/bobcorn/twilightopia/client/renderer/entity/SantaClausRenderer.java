@@ -1,9 +1,7 @@
 package bobcorn.twilightopia.client.renderer.entity;
 
-import com.mojang.blaze3d.platform.GlStateManager;
-
+import com.mojang.blaze3d.matrix.MatrixStack;
 import bobcorn.twilightopia.TwilightopiaMod;
-import bobcorn.twilightopia.client.renderer.entity.layers.SantaHeldItemLayer;
 import bobcorn.twilightopia.client.renderer.entity.model.SantaClausModel;
 import bobcorn.twilightopia.entity.SantaClausEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
@@ -15,23 +13,19 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class SantaClausRenderer extends MobRenderer<SantaClausEntity, SantaClausModel<SantaClausEntity>> {
-   private static final ResourceLocation SANTA_TEXTURES = new ResourceLocation(TwilightopiaMod.MODID, "textures/entity/santa_claus.png");
+	private static final ResourceLocation SANTA_TEXTURES = new ResourceLocation(TwilightopiaMod.MODID,
+			"textures/entity/santa_claus.png");
 
-   public SantaClausRenderer(EntityRendererManager renderManagerIn) {
-	  super(renderManagerIn, new SantaClausModel<>(0.0F), 0.5F);
-      this.addLayer(new SantaHeldItemLayer<>(this));
-   }
+	public SantaClausRenderer(EntityRendererManager renderManagerIn) {
+		super(renderManagerIn, new SantaClausModel<>(0.0F), 0.5F);
+		// this.addLayer(new VillagerHeldItemLayer<>(this));
+	}
 
-   public void doRender(SantaClausEntity entity, double x, double y, double z, float entityYaw, float partialTicks) {
-      super.doRender(entity, x, y, z, entityYaw, partialTicks);
-   }
+	public ResourceLocation getEntityTexture(SantaClausEntity entity) {
+		return SANTA_TEXTURES;
+	}
 
-   protected ResourceLocation getEntityTexture(SantaClausEntity entity) {
-      return SANTA_TEXTURES;
-   }
-
-   protected void preRenderCallback(WitchEntity entitylivingbaseIn, float partialTickTime) {
-      float f = 0.9375F;
-      GlStateManager.scalef(f, f, f);
-   }
+	protected void func_225620_a_(WitchEntity p_225620_1_, MatrixStack p_225620_2_, float p_225620_3_) {
+		p_225620_2_.func_227862_a_(0.9375F, 0.9375F, 0.9375F);
+	}
 }

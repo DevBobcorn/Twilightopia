@@ -1,13 +1,17 @@
 package bobcorn.twilightopia;
 
+import bobcorn.twilightopia.blocks.ModBlocks;
 import bobcorn.twilightopia.config.ConfigHolder;
-import bobcorn.twilightopia.init.ModVanillaCompat;
-import bobcorn.twilightopia.network.C2SUpdateSignPlus;
-import bobcorn.twilightopia.network.S2CEditSignPlus;
+import bobcorn.twilightopia.container.ModContainerType;
+import bobcorn.twilightopia.entity.ModEntityTypes;
+import bobcorn.twilightopia.items.ModItems;
+import bobcorn.twilightopia.tileentity.ModTileEntityType;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.network.NetworkRegistry;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
 
@@ -35,24 +39,14 @@ public final class TwilightopiaMod {
 		LOGGER.debug("Welcome To Twilightopia!");
 
 		final ModLoadingContext modLoadingContext = ModLoadingContext.get();
-		
+		final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+		ModBlocks.BLOCKS.register(modEventBus);
+		ModItems.ITEMS.register(modEventBus);
+		ModContainerType.CONTAINER_TYPES.register(modEventBus);
+		ModEntityTypes.ENTITY_TYPES.register(modEventBus);
+		ModTileEntityType.TILE_ENTITY_TYPES.register(modEventBus);
 		// Register Configs
 		modLoadingContext.registerConfig(ModConfig.Type.CLIENT, ConfigHolder.CLIENT_SPEC);
 		modLoadingContext.registerConfig(ModConfig.Type.SERVER, ConfigHolder.SERVER_SPEC);
-		
-		int networkId = 0;
-		CHANNEL.registerMessage(networkId++,
-				S2CEditSignPlus.class,
-				S2CEditSignPlus::encode,
-				S2CEditSignPlus::decode,
-				S2CEditSignPlus::handle
-		);
-		CHANNEL.registerMessage(networkId++,
-				C2SUpdateSignPlus.class,
-				C2SUpdateSignPlus::encode,
-				C2SUpdateSignPlus::decode,
-				C2SUpdateSignPlus::handle
-		);
-		ModVanillaCompat.init();
 	}
 }

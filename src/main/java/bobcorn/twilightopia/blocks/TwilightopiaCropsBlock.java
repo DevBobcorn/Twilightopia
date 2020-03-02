@@ -12,6 +12,6 @@ public class TwilightopiaCropsBlock extends CropsBlock {
 	}
 
 	protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
-		return (state.getBlock() == Blocks.FARMLAND || state.getBlock() == ModBlocks.CHOCOLATE_BLOCK || state.getBlock() == ModBlocks.WHITE_CHOCOLATE_BLOCK);
+		return (state.getBlock() == Blocks.FARMLAND || state.getBlock() == ModBlocks.CHOCOLATE_BLOCK.get() || state.getBlock() == ModBlocks.WHITE_CHOCOLATE_BLOCK.get());
 	}
 }

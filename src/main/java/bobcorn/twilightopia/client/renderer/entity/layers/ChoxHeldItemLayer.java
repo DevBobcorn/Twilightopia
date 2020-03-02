@@ -1,17 +1,19 @@
 package bobcorn.twilightopia.client.renderer.entity.layers;
 
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.matrix.MatrixStack;
 
 import bobcorn.twilightopia.entity.passive.ChoxEntity;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.Vector3f;
 import net.minecraft.client.renderer.entity.IEntityRenderer;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.client.renderer.entity.model.FoxModel;
+import net.minecraft.client.renderer.model.ItemCameraTransforms;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraft.client.renderer.model.ItemCameraTransforms;
 
 @SuppressWarnings("deprecation")
 @OnlyIn(Dist.CLIENT)
@@ -20,45 +22,39 @@ public class ChoxHeldItemLayer extends LayerRenderer<ChoxEntity, FoxModel<ChoxEn
       super(p_i50938_1_);
    }
 
-   public void render(ChoxEntity entityIn, float p_212842_2_, float p_212842_3_, float p_212842_4_, float p_212842_5_, float p_212842_6_, float p_212842_7_, float p_212842_8_) {
-      ItemStack itemstack = entityIn.getItemStackFromSlot(EquipmentSlotType.MAINHAND);
-      if (!itemstack.isEmpty()) {
-         boolean flag = entityIn.isSleeping();
-         boolean flag1 = entityIn.isChild();
-         GlStateManager.pushMatrix();
-         if (flag1) {
-            GlStateManager.scalef(0.75F, 0.75F, 0.75F);
-            GlStateManager.translatef(0.0F, 8.0F * p_212842_8_, 3.35F * p_212842_8_);
-         }
-
-         GlStateManager.translatef((this.getEntityModel()).field_217115_a.rotationPointX / 16.0F, (this.getEntityModel()).field_217115_a.rotationPointY / 16.0F, (this.getEntityModel()).field_217115_a.rotationPointZ / 16.0F);
-         float f1 = entityIn.func_213475_v(p_212842_4_) * (180F / (float)Math.PI);
-         GlStateManager.rotatef(f1, 0.0F, 0.0F, 1.0F);
-         GlStateManager.rotatef(p_212842_6_, 0.0F, 1.0F, 0.0F);
-         GlStateManager.rotatef(p_212842_7_, 1.0F, 0.0F, 0.0F);
-         if (entityIn.isChild()) {
-            if (flag) {
-               GlStateManager.translatef(0.4F, 0.26F, 0.15F);
-            } else {
-               GlStateManager.translatef(0.06F, 0.26F, -0.5F);
-            }
-         } else if (flag) {
-            GlStateManager.translatef(0.46F, 0.26F, 0.22F);
-         } else {
-            GlStateManager.translatef(0.06F, 0.27F, -0.5F);
-         }
-
-         GlStateManager.rotatef(90.0F, 1.0F, 0.0F, 0.0F);
-         if (flag) {
-            GlStateManager.rotatef(90.0F, 0.0F, 0.0F, 1.0F);
-         }
-
-         Minecraft.getInstance().getItemRenderer().renderItem(itemstack, entityIn, ItemCameraTransforms.TransformType.GROUND, false);
-         GlStateManager.popMatrix();
+   public void func_225628_a_(MatrixStack p_225628_1_, IRenderTypeBuffer p_225628_2_, int p_225628_3_, ChoxEntity p_225628_4_, float p_225628_5_, float p_225628_6_, float p_225628_7_, float p_225628_8_, float p_225628_9_, float p_225628_10_) {
+      boolean flag = p_225628_4_.isSleeping();
+      boolean flag1 = p_225628_4_.isChild();
+      p_225628_1_.func_227860_a_();
+      if (flag1) {
+         p_225628_1_.func_227862_a_(0.75F, 0.75F, 0.75F);
+         p_225628_1_.func_227861_a_(0.0D, 0.5D, (double)0.209375F);
       }
-   }
 
-   public boolean shouldCombineTextures() {
-      return false;
+      p_225628_1_.func_227861_a_((double)((this.getEntityModel()).field_217115_a.rotationPointX / 16.0F), (double)((this.getEntityModel()).field_217115_a.rotationPointY / 16.0F), (double)((this.getEntityModel()).field_217115_a.rotationPointZ / 16.0F));
+      float f1 = p_225628_4_.func_213475_v(p_225628_7_);
+      p_225628_1_.func_227863_a_(Vector3f.field_229183_f_.func_229193_c_(f1));
+      p_225628_1_.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_(p_225628_9_));
+      p_225628_1_.func_227863_a_(Vector3f.field_229179_b_.func_229187_a_(p_225628_10_));
+      if (p_225628_4_.isChild()) {
+         if (flag) {
+            p_225628_1_.func_227861_a_((double)0.4F, (double)0.26F, (double)0.15F);
+         } else {
+            p_225628_1_.func_227861_a_((double)0.06F, (double)0.26F, -0.5D);
+         }
+      } else if (flag) {
+         p_225628_1_.func_227861_a_((double)0.46F, (double)0.26F, (double)0.22F);
+      } else {
+         p_225628_1_.func_227861_a_((double)0.06F, (double)0.27F, -0.5D);
+      }
+
+      p_225628_1_.func_227863_a_(Vector3f.field_229179_b_.func_229187_a_(90.0F));
+      if (flag) {
+         p_225628_1_.func_227863_a_(Vector3f.field_229183_f_.func_229187_a_(90.0F));
+      }
+
+      ItemStack itemstack = p_225628_4_.getItemStackFromSlot(EquipmentSlotType.MAINHAND);
+      Minecraft.getInstance().getFirstPersonRenderer().func_228397_a_(p_225628_4_, itemstack, ItemCameraTransforms.TransformType.GROUND, false, p_225628_1_, p_225628_2_, p_225628_3_);
+      p_225628_1_.func_227865_b_();
    }
 }

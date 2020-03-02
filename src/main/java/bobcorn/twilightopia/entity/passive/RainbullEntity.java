@@ -9,7 +9,7 @@ import com.google.common.collect.Maps;
 
 import bobcorn.twilightopia.ModUtil;
 import bobcorn.twilightopia.TwilightopiaMod;
-import bobcorn.twilightopia.entity.ModEntityType;
+import bobcorn.twilightopia.entity.ModEntityTypes;
 import bobcorn.twilightopia.items.ModItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.AgeableEntity;
@@ -75,7 +75,7 @@ public class RainbullEntity extends AnimalEntity {
 		this.goalSelector.addGoal(0, new SwimGoal(this));
 		this.goalSelector.addGoal(1, new PanicGoal(this, 2.0D));
 		this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
-		this.goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.fromItems(ModItems.candy_cane), false));
+		this.goalSelector.addGoal(3, new TemptGoal(this, 1.25D, Ingredient.fromItems(ModItems.candy_cane.get()), false));
 		this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25D));
 		this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
 		this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 6.0F));
@@ -159,7 +159,7 @@ public class RainbullEntity extends AnimalEntity {
 	 */
 	@Override
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.getItem() == ModItems.candy_cane;
+		return stack.getItem() == ModItems.candy_cane.get();
 	}
 
 	public boolean processInteract(PlayerEntity player, Hand hand) {
@@ -206,6 +206,6 @@ public class RainbullEntity extends AnimalEntity {
 
 	@Override
 	public AgeableEntity createChild(AgeableEntity ageable) {
-		return new RainbullEntity(ModEntityType.RAINBULL, world);
+		return new RainbullEntity(ModEntityTypes.RAINBULL.get(), world);
 	}
 }

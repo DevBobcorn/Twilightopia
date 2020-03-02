@@ -132,8 +132,8 @@ public class RatEntity extends MonsterEntity {
 				if (net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(this.creature.world, this.creature)
 						&& random.nextInt(10) == 0) {
 					this.facing = Direction.random(random);
-					BlockPos blockpos = (new BlockPos(this.creature.posX, this.creature.posY + 0.5D,
-							this.creature.posZ)).offset(this.facing);
+					BlockPos blockpos = (new BlockPos(this.creature.func_226277_ct_(), this.creature.func_226278_cu_() + 0.5D,
+							this.creature.func_226281_cx_())).offset(this.facing);
 					BlockState blockstate = this.creature.world.getBlockState(blockpos);
 					if (RatBlock.canContainRat(blockstate)) {
 						this.doMerge = true;
@@ -161,7 +161,7 @@ public class RatEntity extends MonsterEntity {
 				super.startExecuting();
 			} else {
 				IWorld iworld = this.creature.world;
-				BlockPos blockpos = (new BlockPos(this.creature.posX, this.creature.posY + 0.5D, this.creature.posZ))
+				BlockPos blockpos = (new BlockPos(this.creature.func_226277_ct_(), this.creature.func_226278_cu_() + 0.5D, this.creature.func_226281_cx_()))
 						.offset(this.facing);
 				BlockState blockstate = iworld.getBlockState(blockpos);
 				if (RatBlock.canContainRat(blockstate)) {
@@ -214,7 +214,7 @@ public class RatEntity extends MonsterEntity {
 							Block block = blockstate.getBlock();
 							if (block instanceof RatBlock) {
 								if (net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(world, this.rat)) {
-									world.setBlockState(blockpos1, ModBlocks.CHEESE_BLOCK.getDefaultState());
+									world.setBlockState(blockpos1, ModBlocks.CHEESE_BLOCK.get().getDefaultState());
 									
 									
 									world.destroyBlock(blockpos1, true);

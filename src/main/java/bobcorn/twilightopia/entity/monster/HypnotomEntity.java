@@ -10,7 +10,6 @@ import com.google.common.collect.Maps;
 
 import bobcorn.twilightopia.TwilightopiaMod;
 import bobcorn.twilightopia.effects.ModEffects;
-import bobcorn.twilightopia.world.biome.TwilightopiaBiomes;
 import net.minecraft.entity.CreatureAttribute;
 import net.minecraft.entity.EntityPredicate;
 import net.minecraft.entity.EntitySize;
@@ -103,10 +102,10 @@ public class HypnotomEntity extends FlyingEntity implements IMob {
 
 	private void updatePhantomSize() {
 		this.recalculateSize();
-		this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue((double) (2 + this.getPhantomSize()));
+		this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue((double) (2 + this.getHypnotomSize()));
 	}
 
-	public int getPhantomSize() {
+	public int getHypnotomSize() {
 		return this.dataManager.get(SIZE);
 	}
 
@@ -132,19 +131,19 @@ public class HypnotomEntity extends FlyingEntity implements IMob {
 			float f1 = MathHelper
 					.cos((float) (this.getEntityId() * 3 + this.ticksExisted + 1) * 0.13F + (float) Math.PI);
 			if (f > 0.0F && f1 <= 0.0F) {
-				this.world.playSound(this.posX, this.posY, this.posZ, SoundEvents.ENTITY_PHANTOM_FLAP,
-						this.getSoundCategory(), 0.95F + this.rand.nextFloat() * 0.05F,
+				this.world.playSound(this.func_226277_ct_(), this.func_226278_cu_(), this.func_226281_cx_(),
+						SoundEvents.ENTITY_PHANTOM_FLAP, this.getSoundCategory(), 0.95F + this.rand.nextFloat() * 0.05F,
 						0.95F + this.rand.nextFloat() * 0.05F, false);
 			}
 
-			int i = this.getPhantomSize();
+			int i = this.getHypnotomSize();
 			float f2 = MathHelper.cos(this.rotationYaw * ((float) Math.PI / 180F)) * (1.3F + 0.21F * (float) i);
 			float f3 = MathHelper.sin(this.rotationYaw * ((float) Math.PI / 180F)) * (1.3F + 0.21F * (float) i);
 			float f4 = (0.3F + f * 0.45F) * ((float) i * 0.2F + 1.0F);
-			this.world.addParticle(ParticleTypes.MYCELIUM, this.posX + (double) f2, this.posY + (double) f4,
-					this.posZ + (double) f3, 0.0D, 0.0D, 0.0D);
-			this.world.addParticle(ParticleTypes.MYCELIUM, this.posX - (double) f2, this.posY + (double) f4,
-					this.posZ - (double) f3, 0.0D, 0.0D, 0.0D);
+			this.world.addParticle(ParticleTypes.MYCELIUM, this.func_226277_ct_() + (double) f2,
+					this.func_226278_cu_() + (double) f4, this.func_226281_cx_() + (double) f3, 0.0D, 0.0D, 0.0D);
+			this.world.addParticle(ParticleTypes.MYCELIUM, this.func_226277_ct_() - (double) f2,
+					this.func_226278_cu_() + (double) f4, this.func_226281_cx_() - (double) f3, 0.0D, 0.0D, 0.0D);
 		}
 
 		if (!this.world.isRemote && this.world.getDifficulty() == Difficulty.PEACEFUL) {
@@ -172,17 +171,11 @@ public class HypnotomEntity extends FlyingEntity implements IMob {
 		this.dataManager.set(SKILL_TYPE, Type);
 	}
 
-	
 	public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason,
 			@Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
 		this.orbitPosition = (new BlockPos(this)).up(5);
-		if (worldIn.getBiome(new BlockPos(this)) == TwilightopiaBiomes.TASTY_TUNDRA) {
-			this.setSkillType(1);
-		} else if (worldIn.getBiome(new BlockPos(this)) == TwilightopiaBiomes.TASTY_LAND) {
-			this.setSkillType(1);
-		} else this.setSkillType(this.rand.nextInt(textures.size()));
 		this.setPhantomSize(0);
-		
+		this.setSkillType(this.rand.nextInt(textures.size()));
 		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 
@@ -203,7 +196,7 @@ public class HypnotomEntity extends FlyingEntity implements IMob {
 		compound.putInt("AX", this.orbitPosition.getX());
 		compound.putInt("AY", this.orbitPosition.getY());
 		compound.putInt("AZ", this.orbitPosition.getZ());
-		compound.putInt("Size", this.getPhantomSize());
+		compound.putInt("Size", this.getHypnotomSize());
 		compound.putInt("SkillType", this.getSkillType());
 	}
 
@@ -247,7 +240,7 @@ public class HypnotomEntity extends FlyingEntity implements IMob {
 	}
 
 	public EntitySize getSize(Pose poseIn) {
-		int i = this.getPhantomSize();
+		int i = this.getHypnotomSize();
 		EntitySize entitysize = super.getSize(poseIn);
 		float f = (entitysize.width + 0.2F * (float) i) / entitysize.width;
 		return entitysize.scale(f);
@@ -277,7 +270,7 @@ public class HypnotomEntity extends FlyingEntity implements IMob {
 						HypnotomEntity.this, HypnotomEntity.this.getBoundingBox().grow(16.0D, 64.0D, 16.0D));
 				if (!list.isEmpty()) {
 					list.sort((p_203140_0_, p_203140_1_) -> {
-						return p_203140_0_.posY > p_203140_1_.posY ? -1 : 1;
+						return p_203140_0_.func_226278_cu_() > p_203140_1_.func_226278_cu_() ? -1 : 1;
 					});
 
 					for (PlayerEntity playerentity : list) {
@@ -334,8 +327,8 @@ public class HypnotomEntity extends FlyingEntity implements IMob {
 		}
 
 		protected boolean func_203146_f() {
-			return HypnotomEntity.this.orbitOffset.squareDistanceTo(HypnotomEntity.this.posX, HypnotomEntity.this.posY,
-					HypnotomEntity.this.posZ) < 4.0D;
+			return HypnotomEntity.this.orbitOffset.squareDistanceTo(HypnotomEntity.this.func_226277_ct_(),
+					HypnotomEntity.this.func_226278_cu_(), HypnotomEntity.this.func_226281_cx_()) < 4.0D;
 		}
 	}
 
@@ -352,9 +345,9 @@ public class HypnotomEntity extends FlyingEntity implements IMob {
 				this.speedFactor = 0.1F;
 			}
 
-			float f = (float) (HypnotomEntity.this.orbitOffset.x - HypnotomEntity.this.posX);
-			float f1 = (float) (HypnotomEntity.this.orbitOffset.y - HypnotomEntity.this.posY);
-			float f2 = (float) (HypnotomEntity.this.orbitOffset.z - HypnotomEntity.this.posZ);
+			float f = (float) (HypnotomEntity.this.orbitOffset.x - HypnotomEntity.this.func_226277_ct_());
+			float f1 = (float) (HypnotomEntity.this.orbitOffset.y - HypnotomEntity.this.func_226278_cu_());
+			float f2 = (float) (HypnotomEntity.this.orbitOffset.z - HypnotomEntity.this.func_226281_cx_());
 			double d0 = (double) MathHelper.sqrt(f * f + f2 * f2);
 			double d1 = 1.0D - (double) MathHelper.abs(f1 * 0.7F) / d0;
 			f = (float) ((double) f * d1);
@@ -439,13 +432,13 @@ public class HypnotomEntity extends FlyingEntity implements IMob {
 				this.func_203148_i();
 			}
 
-			if (HypnotomEntity.this.orbitOffset.y < HypnotomEntity.this.posY
+			if (HypnotomEntity.this.orbitOffset.y < HypnotomEntity.this.func_226278_cu_()
 					&& !HypnotomEntity.this.world.isAirBlock((new BlockPos(HypnotomEntity.this)).down(1))) {
 				this.field_203152_e = Math.max(1.0F, this.field_203152_e);
 				this.func_203148_i();
 			}
 
-			if (HypnotomEntity.this.orbitOffset.y > HypnotomEntity.this.posY
+			if (HypnotomEntity.this.orbitOffset.y > HypnotomEntity.this.func_226278_cu_()
 					&& !HypnotomEntity.this.world.isAirBlock((new BlockPos(HypnotomEntity.this)).up(1))) {
 				this.field_203152_e = Math.min(-1.0F, this.field_203152_e);
 				this.func_203148_i();
@@ -594,8 +587,8 @@ public class HypnotomEntity extends FlyingEntity implements IMob {
 		 */
 		public void tick() {
 			LivingEntity livingentity = HypnotomEntity.this.getAttackTarget();
-			HypnotomEntity.this.orbitOffset = new Vec3d(livingentity.posX,
-					livingentity.posY + (double) livingentity.getHeight() * 0.5D, livingentity.posZ);
+			HypnotomEntity.this.orbitOffset = new Vec3d(livingentity.func_226277_ct_(),
+					livingentity.func_226278_cu_() + (double) livingentity.getHeight() * 0.5D, livingentity.func_226281_cx_());
 			if (HypnotomEntity.this.getBoundingBox().grow((double) 0.2F).intersects(livingentity.getBoundingBox())) {
 				HypnotomEntity.this.attackEntityAsMob(livingentity);
 				if (livingentity instanceof PlayerEntity) {
@@ -603,15 +596,15 @@ public class HypnotomEntity extends FlyingEntity implements IMob {
 						livingentity.addPotionEffect(new EffectInstance(ModEffects.NEON_ILLUSION, 1200));
 					else if (HypnotomEntity.this.getSkillType() == 1)
 						livingentity.addPotionEffect(new EffectInstance(ModEffects.FROZEN, 800));
-					else livingentity.setFire(10);
+					else
+						livingentity.setFire(10);
 				}
-				//System.out.println("Set fire to the sky!");
+				// System.out.println("Set fire to the sky!");
 				HypnotomEntity.this.attackPhase = HypnotomEntity.AttackPhase.CIRCLE;
 				HypnotomEntity.this.world.playEvent(1039, new BlockPos(HypnotomEntity.this), 0);
 			} else if (HypnotomEntity.this.collidedHorizontally || HypnotomEntity.this.hurtTime > 0) {
 				HypnotomEntity.this.attackPhase = HypnotomEntity.AttackPhase.CIRCLE;
 			}
-
 		}
 	}
 }

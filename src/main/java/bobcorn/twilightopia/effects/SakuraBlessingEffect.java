@@ -23,7 +23,7 @@ public class SakuraBlessingEffect extends Effect {
 	public void performEffect(@Nonnull LivingEntity living, int amplified) {
 		if(living instanceof PlayerEntity) {
 			PlayerEntity player = (PlayerEntity)living;
-			if (player.getHeldItemMainhand().getItem() == ModItems.sakura) {
+			if (player.getHeldItemMainhand().getItem() == ModItems.sakura.get()) {
 				if (player.getHealth() <= player.getMaxHealth() * 0.85F - 0.1F)
 					player.heal(0.5F);
 			}

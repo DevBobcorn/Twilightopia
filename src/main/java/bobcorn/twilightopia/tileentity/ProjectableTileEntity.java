@@ -27,7 +27,7 @@ public class ProjectableTileEntity extends TileEntity {
 	}
 
 	public ProjectableTileEntity() {
-		this(ModTileEntityType.PROJECTOR_MAP);
+		this(ModTileEntityType.PROJECTABLE.get());
 	}
 
 	// @OnlyIn(Dist.CLIENT) Makes it so this method will be removed from the class on the PHYSICAL SERVER

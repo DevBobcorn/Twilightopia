@@ -2,33 +2,19 @@ package bobcorn.twilightopia.blocks;
 
 import java.util.Random;
 
-import bobcorn.twilightopia.world.gen.feature.ModFeature;
 import net.minecraft.block.*;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.lighting.LightEngine;
+import net.minecraft.world.server.ServerWorld;
 
 public class GrassedChocolateBlock extends SpreadableSnowyDirtBlock implements IGrowable {
 	public GrassedChocolateBlock(Block.Properties properties) {
 		super(properties);
-	}
-
-	public boolean isSolid(BlockState state) {
-		return true;
-	}
-
-	/**
-	 * Gets the render layer this block will render on. SOLID for solid blocks,
-	 * CUTOUT or CUTOUT_MIPPED for on-off transparency (glass, reeds), TRANSLUCENT
-	 * for fully blended transparency (stained glass)
-	 */
-	public BlockRenderLayer getRenderLayer() {
-		return BlockRenderLayer.CUTOUT_MIPPED;
 	}
 
 	private static boolean func_220257_b(BlockState p_220257_0_, IWorldReader p_220257_1_, BlockPos p_220257_2_) {
@@ -50,25 +36,25 @@ public class GrassedChocolateBlock extends SpreadableSnowyDirtBlock implements I
 	}
 
 	@Override
-	public void tick(BlockState state, World worldIn, BlockPos pos, Random random) {
+	public void func_225534_a_(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
 		if (!worldIn.isRemote) {
 			if (!worldIn.isAreaLoaded(pos, 3))
 				return; // Forge: prevent loading unloaded chunks when checking neighbor's light and
 						// spreading
 			if (!func_220257_b(state, worldIn, pos)) {
-				if (state.getBlock() == ModBlocks.GRASSED_CHOCOLATE_BLOCK)
-					worldIn.setBlockState(pos, ModBlocks.CHOCOLATE_BLOCK.getDefaultState());
+				if (state.getBlock() == ModBlocks.GRASSED_CHOCOLATE_BLOCK.get())
+					worldIn.setBlockState(pos, ModBlocks.CHOCOLATE_BLOCK.get().getDefaultState());
 				else
-					worldIn.setBlockState(pos, ModBlocks.WHITE_CHOCOLATE_BLOCK.getDefaultState());
+					worldIn.setBlockState(pos, ModBlocks.WHITE_CHOCOLATE_BLOCK.get().getDefaultState());
 			} else {
 				if (worldIn.getLight(pos.up()) >= 9) {
 					BlockState blockstate = this.getDefaultState();
 					for (int i = 0; i < 4; ++i) {
 						BlockPos blockpos = pos.add(random.nextInt(3) - 1, random.nextInt(5) - 3,
 								random.nextInt(3) - 1);
-						Block spreadTarget = (state.getBlock() == ModBlocks.GRASSED_CHOCOLATE_BLOCK)
-								? ModBlocks.CHOCOLATE_BLOCK
-								: ModBlocks.WHITE_CHOCOLATE_BLOCK;
+						Block spreadTarget = (state.getBlock() == ModBlocks.GRASSED_CHOCOLATE_BLOCK.get())
+								? ModBlocks.CHOCOLATE_BLOCK.get()
+								: ModBlocks.WHITE_CHOCOLATE_BLOCK.get();
 						if (worldIn.getBlockState(blockpos).getBlock() == spreadTarget
 								&& func_220256_c(blockstate, worldIn, blockpos)) {
 							worldIn.setBlockState(blockpos, blockstate.with(SNOWY,
@@ -91,48 +77,9 @@ public class GrassedChocolateBlock extends SpreadableSnowyDirtBlock implements I
 		return true;
 	}
 
-	@SuppressWarnings("deprecation")
-	public void grow(World worldIn, Random rand, BlockPos pos, BlockState state) {
-		BlockPos blockpos = pos.up();
-		BlockState blockstate = ModBlocks.VELVET_GRASS.getDefaultState();
-
-		for (int i = 0; i < 128; ++i) {
-			BlockPos blockpos1 = blockpos;
-			int j = 0;
-
-			while (true) {
-				if (j >= i / 16) {
-					BlockState blockstate2 = worldIn.getBlockState(blockpos1);
-					if (blockstate2.getBlock() == blockstate.getBlock() && rand.nextInt(10) == 0) {
-						((IGrowable) blockstate.getBlock()).grow(worldIn, rand, blockpos1, blockstate2);
-					}
-
-					if (!blockstate2.isAir()) {
-						break;
-					}
-
-					BlockState blockstate1 = null;
-					if (rand.nextInt(8) == 0) {
-						ModFeature.TWILIT_FLOWERS.getRandomFlower(rand, pos);
-					} else {
-						blockstate1 = blockstate;
-					}
-
-					if (blockstate1.isValidPosition(worldIn, blockpos1)) {
-						worldIn.setBlockState(blockpos1, blockstate1, 3);
-					}
-					break;
-				}
-
-				blockpos1 = blockpos1.add(rand.nextInt(3) - 1, (rand.nextInt(3) - 1) * rand.nextInt(3) / 2,
-						rand.nextInt(3) - 1);
-				if (worldIn.getBlockState(blockpos1.down()).getBlock() != this
-						|| worldIn.getBlockState(blockpos1).func_224756_o(worldIn, blockpos1)) {
-					break;
-				}
-
-				++j;
-			}
-		}
+	@Override
+	public void func_225535_a_(ServerWorld p_225535_1_, Random p_225535_2_, BlockPos p_225535_3_,
+			BlockState p_225535_4_) {
+		// TODO Grow Grass		
 	}
 }
