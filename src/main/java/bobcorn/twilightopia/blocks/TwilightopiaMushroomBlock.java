@@ -52,7 +52,7 @@ public class TwilightopiaMushroomBlock extends TwilightopiaBushBlock implements 
    }
 
    protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
-      return state.isOpaqueCube(worldIn, pos);
+      return true;
    }
 
    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
@@ -60,7 +60,7 @@ public class TwilightopiaMushroomBlock extends TwilightopiaBushBlock implements 
       BlockState blockstate = worldIn.getBlockState(blockpos);
       Block block = blockstate.getBlock();
       if (block != Blocks.MYCELIUM && block != Blocks.PODZOL && !TwilightopiaSoilHelper.isChoco(worldIn, pos)) {
-         return worldIn.getLightSubtracted(pos, 0) < 13 && blockstate.canSustainPlant(worldIn, blockpos, net.minecraft.util.Direction.UP, this);
+         return worldIn.getLightSubtracted(pos, 0) <= 13 && blockstate.canSustainPlant(worldIn, blockpos, net.minecraft.util.Direction.UP, this);
       } else {
          return true;
       }

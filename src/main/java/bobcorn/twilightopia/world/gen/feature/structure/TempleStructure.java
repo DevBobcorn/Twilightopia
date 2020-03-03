@@ -10,8 +10,8 @@ import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 
-public class ToriiStruture extends TwilitTemplateStructure<NoFeatureConfig> {
-	public ToriiStruture(Function<Dynamic<?>, ? extends NoFeatureConfig> configFactoryIn) {
+public class TempleStructure extends TwilitTemplateStructure<NoFeatureConfig> {
+	public TempleStructure(Function<Dynamic<?>, ? extends NoFeatureConfig> configFactoryIn) {
 		super(configFactoryIn);
 	}
 	
@@ -22,7 +22,7 @@ public class ToriiStruture extends TwilitTemplateStructure<NoFeatureConfig> {
 	
 	@Override
 	ResourceLocation getRes() {
-		return new ResourceLocation(TwilightopiaMod.MODID, "japan/torii");
+		return new ResourceLocation(TwilightopiaMod.MODID, "japan/temple");
 	}
 	
 	@Override
@@ -31,6 +31,15 @@ public class ToriiStruture extends TwilitTemplateStructure<NoFeatureConfig> {
 	}
 	
 	protected Rotation getRotation() {
-		return (random.nextInt(3) == 0) ? Rotation.NONE : Rotation.CLOCKWISE_90;
+		switch(random.nextInt(3)) {
+		case 0:
+			return Rotation.NONE;
+		case 1:
+			return Rotation.CLOCKWISE_90;
+		case 2:
+			return Rotation.CLOCKWISE_180;
+		default:
+			return Rotation.COUNTERCLOCKWISE_90;
+		}
 	}
 }

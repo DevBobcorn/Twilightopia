@@ -19,6 +19,7 @@ import net.minecraftforge.fml.DistExecutor;
 import javax.annotation.Nullable;
 
 import bobcorn.twilightopia.client.gui.ProjectableScreen;
+import bobcorn.twilightopia.client.renderer.ProjectableMapModel;
 import bobcorn.twilightopia.tileentity.ModTileEntityType;
 import bobcorn.twilightopia.tileentity.ProjectableTileEntity;
 
@@ -52,6 +53,17 @@ public class ProjectableBlock extends Block {
 
 	@Override
 	public boolean onBlockActivated(final BlockState state, final World worldIn, final BlockPos pos, final PlayerEntity player, final Hand handIn, final BlockRayTraceResult hit) {
+		if (!player.isCreative()) {
+			//Then Refresh directly
+			if (worldIn.isRemote) {
+				final TileEntity tileEntity = worldIn.getTileEntity(pos);
+				if (tileEntity instanceof ProjectableTileEntity) {
+					final ProjectableMapModel miniMap = ((ProjectableTileEntity) tileEntity).mapModel;
+					if (miniMap != null)
+						miniMap.rebuild();
+				}
+			}
+		} else
 		// Only open the gui on the physical client
 		DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> openGui(worldIn, pos));
 		return true;

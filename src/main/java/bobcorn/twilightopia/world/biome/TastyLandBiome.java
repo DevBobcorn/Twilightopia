@@ -54,6 +54,12 @@ public final class TastyLandBiome extends Biome {
 		this.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES,
 				createDecoratedFeature(ModFeature.PAGODA, IFeatureConfig.NO_FEATURE_CONFIG,
 						Placement.COUNT_EXTRA_HEIGHTMAP, new AtSurfaceWithExtraConfig(0, 0.015F, 1)));
+		this.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES,
+				createDecoratedFeature(ModFeature.TEMPLE, IFeatureConfig.NO_FEATURE_CONFIG,
+						Placement.COUNT_EXTRA_HEIGHTMAP, new AtSurfaceWithExtraConfig(0, 0.01F, 1)));
+		this.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES,
+				createDecoratedFeature(ModFeature.OCEAN_LAMP, IFeatureConfig.NO_FEATURE_CONFIG,
+						Placement.COUNT_EXTRA_HEIGHTMAP, new AtSurfaceWithExtraConfig(0, 0.02F, 1)));
 		this.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES,
 				Biome.createDecoratedFeature(ModFeature.TASTY_ORE,
 						new TastyOreFeatureConfig(TastyOreFeatureConfig.FillerBlockType.CHEESE,

@@ -13,7 +13,6 @@ import javax.annotation.Nullable;
 
 
 public class ProjectableTileEntity extends TileEntity {
-
 	@Nullable // May be accessed before onLoad
 	// @OnlyIn(Dist.CLIENT) Makes it so this field will be removed from the class on the PHYSICAL SERVER
 	// This is because we only want the MiniModel on the physical client - its rendering only.

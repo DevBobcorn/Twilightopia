@@ -16,6 +16,11 @@ public class PagodaStructure extends TwilitTemplateStructure<NoFeatureConfig> {
 	}
 
 	@Override
+	protected Boolean mustOnSoil() {
+		return true;
+	}
+	
+	@Override
 	ResourceLocation getRes() {
 		return new ResourceLocation(TwilightopiaMod.MODID, "japan/pagoda");
 	}

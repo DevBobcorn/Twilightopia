@@ -12,8 +12,6 @@ import net.minecraft.util.math.Vec3d;
 /**
  * A wrapper around ChunkRender.
  * Stores the a render of the chunk (16x16x16) surrounding a TileEntity
- *
- * @author Cadiboo
  */
 public class ProjectableMapModel {
 

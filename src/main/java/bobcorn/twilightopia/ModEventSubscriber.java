@@ -356,10 +356,12 @@ public final class ModEventSubscriber {
 			ModFeature.HUGE_CANDY_CANE.setRegistryName(TwilightopiaMod.MODID,"huge_candy_cane"),
 			ModFeature.TASTY_ORE.setRegistryName(TwilightopiaMod.MODID,"tasty_ore"),
 			ModFeature.TWILIT_FLOWERS.setRegistryName(TwilightopiaMod.MODID,"twilit_flower"),
+			ModFeature.TWILIT_MUSHROOM.setRegistryName(TwilightopiaMod.MODID,"twilit_mushroom"),
 			ModFeature.MAZE.setRegistryName(TwilightopiaMod.MODID,"maze"),
 			ModFeature.MAZE_LARGE.setRegistryName(TwilightopiaMod.MODID,"maze_large"),
 			ModFeature.TORII.setRegistryName(TwilightopiaMod.MODID,"torii"),
-			ModFeature.PAGODA.setRegistryName(TwilightopiaMod.MODID,"pagoda")
+			ModFeature.PAGODA.setRegistryName(TwilightopiaMod.MODID,"pagoda"),
+			ModFeature.TEMPLE.setRegistryName(TwilightopiaMod.MODID,"temple")
 		);
 		
 		LOGGER.debug("Registered Features");

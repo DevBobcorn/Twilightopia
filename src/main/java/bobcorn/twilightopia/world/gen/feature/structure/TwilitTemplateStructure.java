@@ -5,12 +5,14 @@ import java.util.function.Function;
 
 import com.mojang.datafixers.Dynamic;
 
+import bobcorn.twilightopia.blocks.TwilightopiaSoilHelper;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.ResourceLocationException;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.GenerationSettings;
@@ -46,14 +48,21 @@ public abstract class TwilitTemplateStructure<C extends IFeatureConfig> extends 
 		return true;
 	}
 	
+	protected Boolean mustOnSoil() {
+		return false;
+	}
+	
 	@Override
 	public boolean place(IWorld worldIn, ChunkGenerator<? extends GenerationSettings> generator, Random rand,
 			BlockPos pos, C config) {
 		if (worldIn instanceof WorldGenRegion) {
-			System.out.println("Structure placed at " + pos.getX() + ' ' +pos.getY() + ' ' + pos.getZ());
+			//System.out.println("Structure placed at " + pos.getX() + ' ' +pos.getY() + ' ' + pos.getZ());
 			ServerWorld serverworld = (ServerWorld) worldIn.getWorld();
 			TemplateManager templatemanager = serverworld.getStructureTemplateManager();
 			Template template;
+			if (mustOnSoil() && !TwilightopiaSoilHelper.isSoilOrChoco((IBlockReader)worldIn, pos.down(1)))
+				return false;
+			
 			try {
 				//System.out.println("Structure Loading");
 				template = templatemanager.getTemplate(getRes());

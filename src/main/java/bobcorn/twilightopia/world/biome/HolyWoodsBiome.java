@@ -55,9 +55,6 @@ public final class HolyWoodsBiome extends Biome {
 		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
 				createDecoratedFeature(ModFeature.PROPHET_TREE, IFeatureConfig.NO_FEATURE_CONFIG,
 						Placement.COUNT_EXTRA_HEIGHTMAP, new AtSurfaceWithExtraConfig(0, 0.05F, 1)));
-		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
-				createDecoratedFeature(ModFeature.PROPHET_TREE, IFeatureConfig.NO_FEATURE_CONFIG,
-						Placement.COUNT_EXTRA_HEIGHTMAP, new AtSurfaceWithExtraConfig(0, 0.1F, 1)));
 		this.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES,
 				createDecoratedFeature(ModFeature.MAZE_LARGE,
 						new MazeConfig(14, 5, Blocks.STONE_BRICKS.getDefaultState(),
@@ -77,6 +74,9 @@ public final class HolyWoodsBiome extends Biome {
 		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
 				Biome.createDecoratedFeature(ModFeature.TWILIT_FLOWERS, IFeatureConfig.NO_FEATURE_CONFIG,
 						Placement.COUNT_HEIGHTMAP_32, new FrequencyConfig(2)));
+		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
+				Biome.createDecoratedFeature(ModFeature.TWILIT_MUSHROOM, IFeatureConfig.NO_FEATURE_CONFIG,
+						Placement.COUNT_HEIGHTMAP_32, new FrequencyConfig(1)));
 		this.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION,
 				Biome.createDecoratedFeature(Feature.GRASS, new GrassFeatureConfig(ModBlocks.MISTY_GRASS.getDefaultState()),
 						Placement.NOISE_HEIGHTMAP_DOUBLE, new NoiseDependant(-0.8D, 5, 10)));
