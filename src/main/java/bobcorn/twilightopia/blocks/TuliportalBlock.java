@@ -417,8 +417,12 @@ public class TuliportalBlock extends Block {
 			NewBookStack.setTagInfo("generation", new IntNBT(0));
 			NewBookStack.setTagInfo("author", new StringNBT("???"));
 			NewBookStack.setTagInfo("title", new StringNBT(I18n.format("texts.twilightopia.oracle")));
+			String[] story = StoryTeller.GetStory(StoryTeller.getPath("oracle"));
+			int pages = Integer.parseInt(story[0]);
 			ListNBT NewPageList = new ListNBT();
-			NewPageList.add(new StringNBT(StoryTeller.GetStory(StoryTeller.getPath("oracle"))));
+			for (int i = 1;i <= pages;++i)
+				if (story[i] != null && story[i] != "")
+					NewPageList.add(new StringNBT(story[i]));
 			NewBookStack.setTagInfo("pages", NewPageList);
 			lect.setBook(NewBookStack);
 			LecternBlock.setHasBook(worldIn, pos, lectState, true);
@@ -559,9 +563,13 @@ public class TuliportalBlock extends Block {
 			NewBookStack.setTagInfo("generation", new IntNBT(0));
 			NewBookStack.setTagInfo("author", new StringNBT("DevBobcorn"));
 			NewBookStack.setTagInfo("title", new StringNBT(I18n.format("texts.twilightopia.welcome")));
-
+			String[] story = StoryTeller.GetStory(StoryTeller.getPath("poem"));
+			int pages = Integer.parseInt(story[0]);
+			
 			ListNBT NewPageList = new ListNBT();
-			NewPageList.add(new StringNBT(StoryTeller.GetStory(StoryTeller.getPath("poem"))));
+			for (int i = 1;i <= pages;++i)
+				if (story[i] != null && story[i] != "")
+					NewPageList.add(new StringNBT(story[i]));
 			NewBookStack.setTagInfo("pages", NewPageList);
 			lect.setBook(NewBookStack);
 			LecternBlock.setHasBook(worldIn, lectPos, lectState, true);

@@ -58,7 +58,7 @@ public class ProphetLogTileEntity extends TileEntity implements INamedContainerP
 			EntityType.WITCH, EntityType.WITHER, EntityType.WITHER_SKELETON, EntityType.ZOMBIE,
 			EntityType.ZOMBIE_VILLAGER);
 
-	private boolean tellingStory = false;
+	private int tellingStory = 0;
 
 	private static final String RUBY_SLOT_TAG = "ruby_slot";
 	private static final String ITEM_SLOT_TAG = "item_slot";
@@ -73,7 +73,7 @@ public class ProphetLogTileEntity extends TileEntity implements INamedContainerP
 		@Override
 		protected void onContentsChanged(final int slot) {
 			super.onContentsChanged(slot);
-			if (!tellingStory)
+			if (tellingStory <= 0)
 				TryTellStory();
 			// Mark the tile entity as having changed whenever its inventory changes.
 			// "markDirty" tells vanilla that the chunk containing the tile entity has
@@ -91,7 +91,7 @@ public class ProphetLogTileEntity extends TileEntity implements INamedContainerP
 		@Override
 		protected void onContentsChanged(final int slot) {
 			super.onContentsChanged(slot);
-			if (!tellingStory)
+			if (tellingStory <= 0)
 				TryTellStory();
 			// Mark the tile entity as having changed whenever its inventory changes.
 			// "markDirty" tells vanilla that the chunk containing the tile entity has
@@ -110,7 +110,7 @@ public class ProphetLogTileEntity extends TileEntity implements INamedContainerP
 		@Override
 		protected void onContentsChanged(final int slot) {
 			super.onContentsChanged(slot);
-			if (!tellingStory)
+			if (tellingStory <= 0)
 				TryTellStory();
 			// Mark the tile entity as having changed whenever its inventory changes.
 			// "markDirty" tells vanilla that the chunk containing the tile entity has
@@ -160,17 +160,19 @@ public class ProphetLogTileEntity extends TileEntity implements INamedContainerP
 
 	public void TryTellStory() {
 		if (rubySlot.getStackInSlot(0).isEmpty() || bookSlot.getStackInSlot(0).isEmpty()
-				|| itemSlot.getStackInSlot(0).isEmpty() || tellingStory)
+				|| itemSlot.getStackInSlot(0).isEmpty() || tellingStory > 0)
 			return;
 		if (bookSlot.getStackInSlot(0).getTag().getString("title") == I18n.format("texts." + TwilightopiaMod.MODID + ".book_of_story"))
 			return;
-		tellingStory = true;
+		tellingStory++;
+		System.out.println("tellingStory " + tellingStory);
 		System.out.println("Booknum: " + bookSlot.getStackInSlot(0).getCount());
 		TranslationTextComponent prophetName = new TranslationTextComponent(ModBlocks.PROPHET_LOG.getTranslationKey());
 
-		String story = StoryTeller.GetStory(itemSlot.getStackInSlot(0));
-
-		if (story != "") {
+		String[] story = StoryTeller.GetStory(itemSlot.getStackInSlot(0));
+		int pages = Integer.parseInt(story[0]);
+		System.out.println(pages + " Pages Found.");
+		if (pages != 0) {
 			ItemStack NewBookStack = new ItemStack(Items.WRITTEN_BOOK);
 			NewBookStack.setTagInfo("resolved", new ByteNBT((byte) 1));
 			NewBookStack.setTagInfo("generation", new IntNBT(0));
@@ -179,7 +181,11 @@ public class ProphetLogTileEntity extends TileEntity implements INamedContainerP
 					new StringNBT(I18n.format("texts." + TwilightopiaMod.MODID + ".book_of_story")));
 
 			ListNBT NewPageList = new ListNBT();
-			NewPageList.add(new StringNBT(story));
+			for (int i = 1;i <= pages;++i) {
+				if (story[i] != null && story[i] != "")
+					NewPageList.add(new StringNBT(story[i]));
+			}
+				
 			NewBookStack.setTagInfo("pages", NewPageList);
 
 			bookSlot.setStackInSlot(0, NewBookStack);
@@ -187,7 +193,7 @@ public class ProphetLogTileEntity extends TileEntity implements INamedContainerP
 			//itemSlot.getStackInSlot(0).shrink(1);
 		}
 
-		tellingStory = false;
+		tellingStory--;
 	}
 	
 	@Override

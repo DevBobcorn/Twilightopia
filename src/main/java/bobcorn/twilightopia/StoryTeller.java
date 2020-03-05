@@ -16,13 +16,16 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 
 public class StoryTeller {
-	public static final String GetStory(ItemStack item) {
+	public static final String[] GetStory(ItemStack item) {
 		return GetStory(getPath(item));
 	}
 	
-	public static final String GetStory(String path) {
+	public static final String pageDelim = "[NXTPG]";
+	
+	public static final String[] GetStory(String path) {
 		IResource iresource = null;
-		String lines = "";
+		String[] lines = { "0", "", "", "", "", "", "", "", "" };
+		Integer curpage = 0;
 		try {
 			System.out.println("Tellin' Story From Path " + path);
 
@@ -37,6 +40,8 @@ public class StoryTeller {
 					new InputStreamReader(inputstream, StandardCharsets.UTF_8));
 			Random random = new Random(8124371L);
 			String s1;
+			
+			curpage = 1;
 			while ((s1 = bufferedreader.readLine()) != null) {
 				String s2;
 				String s3;
@@ -47,8 +52,13 @@ public class StoryTeller {
 					s2 = s1.substring(0, j);
 					s3 = s1.substring(j + s.length());
 				}
-				System.out.println("Line: " + s1);
-				lines = lines.concat(s1 + '\n');
+				if (s1.contains(pageDelim) && curpage < 7) {
+					curpage++;
+					System.out.println("Page: " + curpage);
+				} else {
+					System.out.println("Line: " + s1);
+					lines[curpage] = lines[curpage].concat(s1 + '\n');
+				}
 			}
 			inputstream.close();
 		} catch (Exception exception) {
@@ -56,6 +66,7 @@ public class StoryTeller {
 		} finally {
 			IOUtils.closeQuietly((Closeable) iresource);
 		}
+		lines[0] = curpage.toString();
 		return lines;
 	}
 

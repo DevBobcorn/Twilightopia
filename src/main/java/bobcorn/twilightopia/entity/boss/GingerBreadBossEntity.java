@@ -2,6 +2,7 @@ package bobcorn.twilightopia.entity.boss;
 
 import javax.annotation.Nullable;
 
+import bobcorn.twilightopia.TwilightopiaMod;
 import bobcorn.twilightopia.items.ModItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.IRangedAttackMob;
@@ -19,12 +20,14 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.BossInfo;
 import net.minecraft.world.ServerBossInfo;
 import net.minecraft.world.World;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class GingerBreadBossEntity extends GiantEntity implements IRangedAttackMob {
 	private final ServerBossInfo bossInfo = (ServerBossInfo) (new ServerBossInfo(this.getDisplayName(),
@@ -98,6 +101,7 @@ public class GingerBreadBossEntity extends GiantEntity implements IRangedAttackM
 
 	protected void dropSpecialItems(DamageSource source, int looting, boolean recentlyHitIn) {
 		this.entityDropItem(ModItems.crown);
+		this.entityDropItem(ForgeRegistries.ITEMS.getValue(new ResourceLocation(TwilightopiaMod.MODID, "tuliportal")), 6);
 		for (int i = 100;i <= 2000;i += 100) {
 			this.dropExperience(i);
 		}
